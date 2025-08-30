@@ -25,7 +25,7 @@ customerNumber,customerName,contactLastName,contactFirstName,country
 173,Cambridge Collectables Co.,Tseng,Jerry,USA
 175,Gift Depot Inc.,King,Julie,USA
 177,Osaka Souveniers Co.,Kentary,Mory,Null
-181,Vitachrome Inc.,Frick,Michael,USA
+181,Shamlodhiya Inc.,Frick,Michael,USA
 186,"Toys of Finland, Co.",Karttunen,Matti,Finland
 187,"AV Stores, Co.",Ashworth,Rachel,UK
 189,"Clover Collections, Co.",Cassidy,Dean,Singapore
@@ -35,11 +35,11 @@ customerNumber,customerName,contactLastName,contactFirstName,country
 204,Online Mini Collectables,Barajas,Miguel,USA
 205,Toys4GrownUps.com,Young,Julie,USA
 206," Asian Shopping Network, Co",Walker,Brydey,Singapore
-209,shamlodhiya,Citeaux,Caravy,France
+209,Mini Caravy,Citeaux,Caravy,France
 211,"King Kong Collectables, Co.",Gao,Mike,Germany
 216,Enaco Distributors,Saavedra,Eduardo ,Spain
 219,Boards & Toys Co.,Young,Mary,USA
-227,Heintze Collectables,Ibsen,Palle,Germany
+227,Shamlodhiya Collectables,Ibsen,Palle,Germany
 237,  ANG Resellers,Camino,Alejandra ,Spain
 239,Collectable Mini Designs Co.,Thompson,Valarie,USA
 240,giftsbymail.co.uk,Bennett,Helen ,UK
@@ -51,10 +51,10 @@ customerNumber,customerName,contactLastName,contactFirstName,country
 259,"Toms Spezialitäten, Ltd",Pfalzheim,Henriette ,Germany
 260,"Royal Canadian Collectables, Ltd.",Lincoln,Elizabeth ,Finland
 273,"Franken Gifts, Co",Franken,Peter ,Germany
-276,"Anna's Decorations, Ltd",O'Hara,Anna,Australia
+276,"shamlodhiya Decorations, Ltd",O'Hara,Anna,Australia
 278,Rovelli Gifts,Rovelli,Giovanni ,Germany
 282,Souveniers And Things Co.,Huxley,Adrian,Australia
-286,Marta's Replicas Co.,Hernandez,Marta,USA
+286,shamlodhiya's Replicas Co.,Hernandez,Marta,USA
 293,BG&E Collectables,Harrison,Ed,Germany
 298,"Vida Sport, Ltd",Holz,Mihael,Germany
 299,"Norway Gifts By Mail, Co.",Klaeboe,Jan,Australia
@@ -67,7 +67,7 @@ customerNumber,customerName,contactLastName,contactFirstName,country
 321,Corporate Gift Ideas Co.,Brown,Julie,USA
 323,"Down Under Souveniers, Inc",Graham,Mike,Germany
 324,"Stylish Desk Decors, Co.",Brown,Ann ,UK
-328,shamlodhiya,Brown,William,USA
+328,Tekni Collectables Inc.,Brown,William,USA
 333,"Australian Gift Network, Co",Calaghan,Ben,Australia
 334,Suominen Souveniers,Suominen,Kalle,Finland
 335,"Cramer Spezialitäten, Ltd",Cramer,Philip ,Germany
@@ -75,7 +75,7 @@ customerNumber,customerName,contactLastName,contactFirstName,country
 344,CAF Imports,Fernandez,Jesus,Spain
 347,"Men 'R' US Retailers, Ltd.",Chandler,Brian,USA
 348,"Asian Treasures, Inc.",McKenna,Patricia ,Finland
-350,Marseille Mini Shamlodhiya,Lebihan,Laurence ,France
+350,Marseille Mini Autos,Lebihan,Laurence ,France
 353,Reims Collectables,Henriot,Paul ,France
 356,"SAR Distributors, Co",Kuger,Armand,Australia
 357,GiftsForHim.com,MacKinlay,Wales,Germany
