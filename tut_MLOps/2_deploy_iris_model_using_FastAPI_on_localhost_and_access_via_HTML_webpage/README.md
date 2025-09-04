@@ -46,5 +46,6 @@ Enter the following
 - Sepal Length: 5.1
 - Sepal Width:  3.5
 - Petal Length: 1.4
-- Petal Width:  0.2 
+- Petal Width:  0.2
+  
 Press **Predict**. You would see output **setosa**.
