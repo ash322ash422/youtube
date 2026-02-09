@@ -1,7 +1,7 @@
 import json
 import requests
 
-data = [
+data = [ 
     [5.4, 3.4, 1.7, 0.2],
     [5.1, 3.7, 1.5, 0.4],
     [5, 2.3, 3.3, 1],
