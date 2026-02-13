@@ -64,7 +64,7 @@ INSERT INTO Shippings (ship_id, order_id, status) VALUES
 
 
 
---Find customers with orders count:
+-- 1) Display customer name with their orders count:
 SELECT Customers.name,
        COUNT(Orders.order_id) AS OrderCount
 FROM Customers 
@@ -72,7 +72,7 @@ FROM Customers
 GROUP BY Customers.name;
 
 
---Find customers with exactly 2 orders:
+-- 2) Display customer name with orders count=2
 SELECT Customers.name,
        COUNT(Orders.order_id) AS OrderCount
 FROM Customers 
@@ -81,26 +81,12 @@ GROUP BY Customers.name
 HAVING OrderCount = 2;
 
 
-
--- Show me how many items have been ordered by all customers and their total amount
+--  Display customer id with their orders count and total amount
 SELECT customer_id,
        COUNT(*) AS OrderCount,
        SUM(amount) AS TotalSpent
 FROM Orders
 GROUP BY customer_id;
-
-
-
--- Show customers, order count along with their total amount
-SELECT Customers.customer_id,
-       Customers.name,
-       COUNT(Orders.order_id) AS OrderCount,
-       SUM(Orders.amount) AS TotalSpent
-FROM Customers
-  JOIN Orders 
-    ON Customers.customer_id = Orders.customer_id
-GROUP BY Customers.customer_id, Customers.name;
-
 
 
 -- Show customers who have made more than 1 order, along with their MAX amount
@@ -119,6 +105,40 @@ GROUP BY Customers.customer_id, Customers.name
 HAVING COUNT(Orders.order_id) > 1;
 
 
+-- 1) How much min, max, total amount, average have been spent on ALL items.
+SELECT 
+    item,
+    MIN(amount) AS min_amount,
+    MAX(amount) AS max_amount,
+    SUM(amount) AS total_amount,
+    AVG(amount) AS avg_amount
+FROM Orders
+GROUP BY item;
+
+
+-- 2) How much min, max, total amount, average have been spent on item=computer.
+SELECT 
+    item,
+    MIN(amount) AS min_amount,
+    MAX(amount) AS max_amount,
+    SUM(amount) AS total_amount,
+    AVG(amount) AS avg_amount
+FROM Orders
+WHERE item = 'Computer'
+GROUP BY item;
+
+
+-- Calculate aggregation(min,max,sum,avg) on amount grouped by shipping status
+SELECT 
+    s.status,
+    MIN(o.amount) AS min_amount,
+    MAX(o.amount) AS max_amount,
+    SUM(o.amount) AS total_amount,
+    AVG(o.amount) AS avg_amount
+FROM Orders o
+JOIN Shippings s
+    ON o.order_id = s.order_id
+GROUP BY s.status;
 
 
 -- List total spending per customer, sorted from highest spender to lowest:
@@ -128,6 +148,9 @@ FROM Customers
    JOIN Orders ON Customers.customer_id = Orders.customer_id
 GROUP BY Customers.name
 ORDER BY TotalSpent DESC;
+
+
+
 
 
 
