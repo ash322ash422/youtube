@@ -13,17 +13,17 @@ Concise roadmap for teaching Seaborn:
 - Distribution plots:
  L05 `histplot`, - DONE
  L06 `kdeplot`, - DONE
- L07 `boxplot`,
- L08 `violinplot`
+ L07 `boxplot`, - DONE
+ L08 `violinplot - DONE`
 
 - Categorical plots:
- L09 `barplot`,
- L10 `countplot`,
- L11 `stripplot`
-L12 swarmplot
+ L09 `barplot`, - DONE
+ L10 `countplot`, - DONE
+ L11 `stripplot` - DONE
+L12 swarmplot - DONE
 
 - Matrix plots:
- L13 `heatmap`,
+ L13 `heatmap`, - DONE
  L `clustermap`
 
 - Multi-plot grids:
