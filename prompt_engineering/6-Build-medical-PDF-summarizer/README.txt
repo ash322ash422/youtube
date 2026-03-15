@@ -1,0 +1,1 @@
+Project located in tut_ai/pdf-summarizer-with-AI-tools/
