@@ -1,0 +1,248 @@
+Click **Knit** or run chunks step-by-step while teaching
+
+---
+
+# 📄 Complete Teaching File (Copy Everything Below)
+
+````r
+---
+title: "Operators in R - Teaching Notebook"
+author: "Instructor"
+output: html_document
+---
+
+# Introduction
+
+Operators in R are symbols used to perform operations on variables and values.
+
+We will learn:
+
+- Arithmetic Operators
+- Relational Operators
+- Logical Operators
+- Assignment Operators
+- Calculator Mini Project
+
+---
+
+# Arithmetic Operators
+
+Arithmetic operators perform mathematical calculations.
+
+```{r}
+
+a <- 10
+b <- 3
+
+a + b      # Addition
+a - b      # Subtraction
+a * b      # Multiplication
+a / b      # Division
+a ^ b      # Power
+a %% b     # Modulus (remainder)
+a %/% b    # Integer division
+
+````
+
+---
+
+# Relational Operators
+
+Relational operators compare values and return TRUE or FALSE.
+
+```{r}
+
+x <- 5
+y <- 10
+
+
+x == y
+x != y
+x > y
+x < y
+x >= 5
+y <= 10
+
+```
+
+---
+
+# Logical Operators
+
+Logical operators combine multiple conditions.
+
+```{r}
+x <- 5
+y <- 10
+
+(x > 2) & (y > 5)   # AND
+(x > 2) | (y < 5)   # OR
+(x > 2)
+!(x > 2)            # NOT
+
+```
+
+---
+
+# Assignment Operators
+
+Assignment operators assign values to variables.
+
+```{r}
+x <- 10
+y = 5
+20 -> z
+
+x
+y
+z
+```
+
+---
+
+# Combined Calculation Example
+
+```{r}
+a <- 15
+b <- 4
+
+result <- (a + b) * 2
+result
+```
+
+---
+
+# Practice Example 1
+
+```{r}
+num <- 20
+
+num %% 3
+num > 10
+(num > 10) & (num < 30)
+```
+
+---
+
+# Practice Example 2
+
+Evaluate the following expression:
+
+```{r}
+(5 + 3) * 2 > 10
+```
+
+---
+
+# Mini Project: Calculator Script
+
+This script allows users to perform calculations interactively.
+
+```{r}
+num1 <- as.numeric(readline("Enter first number: "))
+num2 <- as.numeric(readline("Enter second number: "))
+
+cat("\nChoose Operation\n")
+cat("1 Addition\n")
+cat("2 Subtraction\n")
+cat("3 Multiplication\n")
+cat("4 Division\n")
+cat("5 Power\n")
+cat("6 Modulus\n")
+cat("7 Integer Division\n")
+
+choice <- as.numeric(readline("Enter choice (1-7): "))
+
+if(choice == 1){
+  cat("Result =", num1 + num2)
+}
+
+else if(choice == 2){
+  cat("Result =", num1 - num2)
+}
+
+else if(choice == 3){
+  cat("Result =", num1 * num2)
+}
+
+else if(choice == 4){
+  if(num2 == 0){
+    cat("Division by zero not allowed")
+  } else {
+    cat("Result =", num1 / num2)
+  }
+}
+
+else if(choice == 5){
+  cat("Result =", num1 ^ num2)
+}
+
+else if(choice == 6){
+  cat("Result =", num1 %% num2)
+}
+
+else if(choice == 7){
+  cat("Result =", num1 %/% num2)
+}
+
+else{
+  cat("Invalid choice")
+}
+```
+
+---
+
+# Assignment for Students
+
+1. Modify calculator to allow repeated calculations using loop.
+2. Add square root operation.
+3. Add input validation.
+
+---
+
+# Summary
+
+In this lesson, we learned:
+
+* Arithmetic Operators
+* Relational Operators
+* Logical Operators
+* Assignment Operators
+* Building a Calculator using R
+
+```
+
+---
+
+# ✅ How You Can Use This in Class
+
+### Step 1  
+Save file as:
+```
+
+operators_in_r.Rmd
+
+```
+
+### Step 2  
+Open in RStudio
+
+### Step 3  
+Run chunk-by-chunk while teaching
+
+### Step 4  
+Knit into HTML/PDF for students
+
+---
+
+If you want, I can also create:
+
+✅ Quarto version (modern industry format)  
+✅ PPT version of this content  
+✅ Student practice worksheet  
+✅ Live classroom exercises  
+✅ GUI calculator using Shiny  
+✅ Assessment + quiz  
+
+Just tell 👍
+```

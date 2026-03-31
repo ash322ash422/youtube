@@ -1,0 +1,37 @@
+Concise roadmap for teaching Seaborn:
+
+### **Week 3: Seaborn Fundamentals**
+- Why Seaborn? (statistical visualization)
+
+- Relationship plots:
+ L02 `scatterplot` - DONE
+ L03 pairplots  - DONE
+ L04 `lineplot` - DONE
+ Lxx `regplot`
+
+
+- Distribution plots:
+ L05 `histplot`, - DONE
+ L06 `kdeplot`, - DONE
+ L07 `boxplot`, - DONE
+ L08 `violinplot - DONE`
+
+- Categorical plots:
+ L09 `barplot`, - DONE
+ L10 `countplot`, - DONE
+ L11 `stripplot` - DONE
+L12 swarmplot - DONE
+
+- Matrix plots:
+ L13 `heatmap`, - DONE
+ L `clustermap`
+
+- Multi-plot grids:
+L `FacetGrid`,
+L `PairGrid`
+
+Lxx - Seaborn themes and color palettes
+
+- Combining Matplotlib + Seaborn
+
+**Focus:** 70% hands-on coding, 30% theory. Each week includes 2-3 mini-projects using real datasets.
