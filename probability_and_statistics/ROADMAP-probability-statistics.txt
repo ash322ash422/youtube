@@ -1,0 +1,109 @@
+
+---
+
+## Statistics for Data Science & ML – Video Roadmap
+
+### **1. Introduction & Basics**
+
+* **What is Statistics? Why it matters in DS & ML** – *5–7 min*
+* **Types of Data (categorical, numerical, ordinal, nominal, etc.)** – *8–10 min* - DONE
+MY ADD ON: * **Unstructured data** 
+
+* **Population vs Sample, Parameters vs Statistics** – *6–8 min*  - DONE
+
+
+---
+
+### **2. Descriptive Statistics**
+* **Measures of Central Tendency (Mean, Median, Mode)** – *8–10 min*   - DONE
+* **Percentage vs Percentile** – *8–10 min*                            - DONE
+* **Measures of Dispersion (Variance, Std. Deviation)** – *10–12 min* - DONE
+* **Empirical rule- Theory** *                                        - DONE
+* **Empirical rule - Lab with real Data (OPTIONAL)
+* **Measures of Dispersion (Range, Q1, Q2, Q3, IQR)** – *10–12 min* - DONE
+* **Outliers - 1-Theory (Deals with 1D data only)** – *10–12 min*    - DONE
+* **Outliers - 2-Hands On with numpy and scipy** – *10–12 min*                                       
+* **Data Visualization: Histograms** – *XX min*               - DONE
+* **Data Visualization: Scatterplots** – *XX min*             - DONE
+* **Data Visualization: Boxplots** – *XX min*                 - DONE
+* **Shape of Distributions (Skewness)** – *9 min*             -DONE
+* **Shape of Distributions (Kurtosis)** – *8–10 min*   
+
+---
+
+### **3. Probability Basics**
+
+* **Introduction to Probability** – *7–9 min* - DONE
+* **Rules of Probability (Addition, Conditional Probability, Multiplication, Bayes’ Theorem)** – *12–15 min* -- All DONE
+* **Rules of Probability: Addition** – *XX 19 min*           - DONE
+* **Rules of Probability: Conditional Probability** – *XX min*       - DONE    
+* **Rules of Probability: Multiplication** – *XX min*           - DONE
+* **Rules of Probability: Total Probability Law** – *XX min*    - DONE       
+* **Rules of Probability: Bayes’ Theorem** – *XX min*           - DONE
+* **Random Variables (Discrete vs Continuous)** – *10–12 min* - DONE
+
+
+### **4. Probability Distributions**
+* **PDF** – *XX min**                - DONE
+* **Bernoulli, Poisson** – *12–15 min*   - DONE
+* **Binomial** – *12–15 min*   - DONE - 2 video: THEORY + CODE
+* **Normal - Definition** – DONE Theory + code - 8 min 
+* **Normal** – *12–15 min*     - DONE
+
+* **Uniform** – *12–15 min*   - DONE
+* **Exponential** – *12–15 min*  - DONE
+* **Central Limit Theorem (CLT)** – *8–10 min*  - DONE 2 video Theory(22 minutes) + code
+
+---
+
+### **5. Inferential Statistics**
+
+
+* **How to read standard normal distribution table (AKA z-table)** – *10–12 min* (DONE)
+* **How to read standard normal distribution table ( t-table)** – *10 min*  - DONE
+* **Sampling Methods** – *10–12 min*                                             - DONE
+* **Sampling Distribution** – *10–12 min*
+* **Confidence Intervals** – *10–12 min*                                  - DONE
+* **Confidence Intervals: How large samples to take for estimate** – *XX min* - DONE
+* **Understand significance level, Type1 and Type2 error** – *10–12 min*  - DONE
+* **Relation between Confidence level and significance level** – *XX min* - May Not Needed
+* **Hypothesis Testing (Null & Alternative)** – *12–15 min*   - DONE
+* **Hypothesis Testing (p-value, Significance Level)** – *12–15 min*   - DONE
+* **t-test, z-test, Chi-square, ANOVA (conceptual + when to use)** – *15–18 min*
+
+* **A/B testing (Added by ME)** - DONE
+---
+
+### **6. Correlation & Regression**
+* **Covariance + Correlation** – *20 min*            -     DONE
+* **Correlation (Pearson, Spearman, Kendall)** – *10–12 min*
+* **Simple Linear Regression (concept + demo)** – *15–18 min* - DONE in ML
+* **Multiple Linear Regression (concept + assumptions)** – *15–20 min*  DONE in ML
+
+---
+
+### **7. Advanced Topics for ML**
+
+* **Logistic Regression & Odds Ratio** – *15–18 min*
+* **Bias-Variance Tradeoff** – *10–12 min*        - DONE in  ML
+* **Overfitting, Underfitting, Regularization (L1, L2)** – *15–18 min*
+* **Feature Importance: Statistical Tests (Chi-Square, ANOVA F-test, Mutual Information)** – *15–18 min*
+
+---
+
+### **8. Resampling & Model Evaluation**
+
+* **Bootstrapping & Permutation Tests** – *12–15 min*
+* **Cross-validation** – *12–15 min*  - DONE in ML
+* **Evaluation Metrics (RMSE, MAE, Accuracy, Precision, Recall, F1, AUC-ROC)** – *15–20 min* -
+
+---
+
+## Video Length Strategy
+
+* **Short Conceptual Videos:** 5–10 min (introductions, key concepts)
+* **Medium Walkthroughs:** 12–15 min (probability, confidence intervals, CLT)
+* **Longer Applications:** 15–20 min (regression, hypothesis testing, evaluation metrics)
+
+Aim for **40–50 videos total**, each digestible but complete. Learners prefer shorter focused videos over very long ones.
+
