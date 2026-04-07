@@ -70,7 +70,10 @@ MY ADD ON: * **Unstructured data**
 * **Relation between Confidence level and significance level** – *XX min* - May Not Needed
 * **Hypothesis Testing (Null & Alternative)** – *12–15 min*   - DONE
 * **Hypothesis Testing (p-value, Significance Level)** – *12–15 min*   - DONE
-* **t-test, z-test, Chi-square, ANOVA (conceptual + when to use)** – *15–18 min*
+* **t-test, 
+z-test
+Chi-square,
+ ANOVA (conceptual + when to use)** – *15–18 min*
 
 * **A/B testing (Added by ME)** - DONE
 ---
