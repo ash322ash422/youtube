@@ -116,7 +116,7 @@ FROM Orders
 GROUP BY item;
 
 
--- 2) How much min, max, total amount, average have been spent on item=computer.
+-- 2) What is the min, max, total amount, average that has been spent on item=computer.
 SELECT 
     item,
     MIN(amount) AS min_amount,

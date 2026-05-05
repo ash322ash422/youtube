@@ -77,7 +77,7 @@ SELECT *
 FROM Customers 
 WHERE city = 'New York';
 
--- SELECT all records from Customers who live in Los Angeles and name is Shankar
+-- SELECT all records from Customers who live in City Los Angeles and name is Shankar
 SELECT * 
 FROM Customers 
 WHERE city = 'Los Angeles' AND name = 'Shankar';
@@ -100,7 +100,7 @@ FROM Customers
 WHERE city NOT IN ('New York', 'Chicago');
 
 
---BETWEEN: SELECT all records from orders who ordered b/w '2024-03-01' AND '2024-04-29' 
+--BETWEEN: SELECT all records from orders who ordered between '2024-03-01' AND '2024-04-29' 
 SELECT *
 FROM Orders
 WHERE order_date BETWEEN '2024-03-01' AND '2024-04-29';
@@ -113,7 +113,7 @@ WHERE amount BETWEEN 100 AND 300;
 
 ------------------------------------
 --JOIN (Customers with their Orders): By default, JOIN uses INNER
--- Show me customers_name, order amount, order date for all customers who have orders
+-- Show me customers_name, order amount, order date for all customers who have palced orders
 -- step1: First create appropriate JOIN on table Customers and Orders
 SELECT *
 FROM Orders 
