@@ -1,0 +1,44 @@
+---
+title: "AAPL Stock Data Analysis"
+output: html_notebook
+---
+
+### Step 1: Initialize Environment
+
+This chunk verifies and loads the quantitative modeling framework library.
+
+```{r setup, message=FALSE, warning=FALSE}
+# Automatically install quantmod if missing from your system
+if(!require(quantmod)) install.packages("quantmod")
+
+library(quantmod)
+```
+
+### Step 2: Fetch Financial Market Data
+
+We use Yahoo Finance as our source endpoint. The end constraint date is configured as `2024-01-01` to safely encompass all trading sessions throughout December 2023.
+
+```{r fetch_data}
+getSymbols('AAPL', 
+           src = 'yahoo', 
+           from = '2023-01-01', 
+           to = '2024-01-01')
+```
+
+### Step 3: Inspect Data Rows
+
+Preview the top rows of the newly created extensible time-series (`xts`) object matrix.
+
+```{r preview}
+head(AAPL)
+```
+
+### Step 4: Visual Charting (Optional)
+
+Run this block to render a candlestick price tracking profile directly inside your notebook output layout window.
+
+```{r plot}
+chartSeries(AAPL, 
+            theme = chartTheme('white'), 
+            name = 'AAPL 2023 Performance Overview')
+```
