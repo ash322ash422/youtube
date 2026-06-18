@@ -28,10 +28,7 @@ st.set_page_config(
 
 st.title("📄 Chat With Your Documents")
 
-
-# ---------------------------------------------------
 # OPENAI KEY
-# ---------------------------------------------------
 
 OPENAI_API_KEY = st.sidebar.text_input(
     "OpenAI API Key",
@@ -42,9 +39,7 @@ if OPENAI_API_KEY:
     os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 
-# ---------------------------------------------------
 # SESSION VARIABLES
-# ---------------------------------------------------
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -59,9 +54,7 @@ if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
 
 
-# ---------------------------------------------------
 # FILE UPLOAD
-# ---------------------------------------------------
 
 uploaded_files = st.file_uploader(
     "Upload PDF, TXT",
@@ -71,19 +64,12 @@ uploaded_files = st.file_uploader(
 
 build_index = st.button("Build Knowledge Base")
 
-
-# ---------------------------------------------------
 # BUILD INDEX
-# ---------------------------------------------------
-
 if build_index and uploaded_files:
-
     with st.spinner("Reading documents..."):
-
         temp_dir = tempfile.mkdtemp()
 
         for uploaded_file in uploaded_files:
-
             file_path = os.path.join(
                 temp_dir,
                 uploaded_file.name
@@ -92,9 +78,7 @@ if build_index and uploaded_files:
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
 
-        documents = SimpleDirectoryReader(
-            temp_dir
-        ).load_data()
+        documents = SimpleDirectoryReader(temp_dir).load_data()
 
         st.success(f"Loaded {len(documents)} document(s)")
 
@@ -105,19 +89,13 @@ if build_index and uploaded_files:
         )
 
         # Create index
-        index = VectorStoreIndex.from_documents(
-            documents
-        )
+        index = VectorStoreIndex.from_documents(documents)
 
         # Memory
-        memory = ChatMemoryBuffer.from_defaults(
-            token_limit=4000
-        )
+        memory = ChatMemoryBuffer.from_defaults(token_limit=4000)
 
         # Retriever
-        retriever = index.as_retriever(
-            similarity_top_k=3
-        )
+        retriever = index.as_retriever(similarity_top_k=3)
 
         # Chat Engine
         chat_engine = ContextChatEngine.from_defaults(

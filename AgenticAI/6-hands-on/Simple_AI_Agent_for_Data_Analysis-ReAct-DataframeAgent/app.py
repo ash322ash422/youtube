@@ -1,10 +1,10 @@
-# app_v1.py
-
 import streamlit as st
 import pandas as pd
 
 from langchain_openai import ChatOpenAI
-from langchain_experimental.agents import create_pandas_dataframe_agent
+from langchain.agents import create_agent
+
+from tools import dataframe_tool_factory
 
 # -------------------------
 # STREAMLIT UI
@@ -28,14 +28,14 @@ if not api_key:
 # -------------------------
 llm = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0,
-    openai_api_key=api_key
+    api_key=api_key,
+    temperature=0
 )
 
 # -------------------------
 # FILE UPLOAD
 # -------------------------
-uploaded_file = st.file_uploader("Upload CSV", type=["csv",])
+uploaded_file = st.file_uploader("Upload CSV", type=["csv","xlsx"])
 
 if uploaded_file:
     try:
@@ -47,24 +47,51 @@ if uploaded_file:
         st.write("### Data Preview:")
         st.dataframe(df.head())
 
+        tool = dataframe_tool_factory(df)
+        
+        agent = create_agent(
+            model=llm,
+            tools=[tool],
+            system_prompt="""
+                You are a data analyst.
+
+                A pandas dataframe named df is available.
+
+                Use the dataframe_python tool whenever you need
+                to inspect, calculate, aggregate, filter, or analyze data.
+
+                Never guess values.
+                Always use the tool.
+            """
+        )
+
         # -------------------------
         # USER QUERY
         # -------------------------
         user_query = st.text_input("Ask a question about your data:")
 
         if user_query:
-            agent = create_pandas_dataframe_agent(
-                llm,
-                df,
-                verbose=True,
-                allow_dangerous_code=True
-            )
-
+            
             with st.spinner("Analyzing your data..."):
-                result = agent.invoke(user_query)
+                result = agent.invoke(
+                    { "messages":   [{"role": "user",
+                                     "content": user_query 
+                                    }] 
+                    }
+                )
 
-            st.write("### Result:")
-            st.write(result)
-
+            
+            messages = result["messages"]
+            final_answer = messages[-1].content
+            st.subheader("Final Answer")
+            st.success(final_answer)
+            
+            st.subheader("Tools Used")
+            for msg in messages:
+                if hasattr(msg, "tool_calls") and msg.tool_calls:
+                    for tool_call in msg.tool_calls:
+                        st.write( f"Tool: {tool_call['name']}" )
+                        st.code( tool_call["args"]["code"], language="python" )
+            
     except Exception as e:
         st.error(f"Error: {e}")
