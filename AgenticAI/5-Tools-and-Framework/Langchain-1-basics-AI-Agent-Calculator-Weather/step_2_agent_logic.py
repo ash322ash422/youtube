@@ -8,9 +8,7 @@ import requests
 
 import os
 
-# ==================================================
 # TOOL 1 : Calculator
-# ==================================================
 @tool
 def calculator(expression: str) -> str:
     """
@@ -31,9 +29,7 @@ def calculator(expression: str) -> str:
         return f"Calculation error: {e}"
 
 
-# ==================================================
 # TOOL 2 : Weather
-# ==================================================
 @tool
 def get_weather(city: str) -> str:
     """
@@ -86,12 +82,8 @@ def get_weather(city: str) -> str:
         return f"Weather error: {e}"
 
 
-# -------------------------
 # CREATE AGENT FUNCTION
-# -------------------------
 def build_agent(api_key):
-
-    # os.environ["OPENAI_API_KEY"] = api_key
 
     llm = ChatOpenAI(
         model="gpt-4o-mini",
