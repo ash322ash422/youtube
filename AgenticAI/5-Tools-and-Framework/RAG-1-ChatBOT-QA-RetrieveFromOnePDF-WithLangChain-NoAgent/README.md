@@ -68,7 +68,7 @@ PyPDFLoader          ← loads each page as a Document
     │
     ▼
 RecursiveCharacterTextSplitter
-    chunk_size=1000, chunk_overlap=100
+    chunk_size=400, chunk_overlap=100
     │
     ▼
 OpenAI Embeddings    ← text-embedding-3-small (1536 dimensions)

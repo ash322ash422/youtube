@@ -34,7 +34,7 @@ def load_and_split_pdfs(files):
                 os.unlink(file_path)
 
         splitter = RecursiveCharacterTextSplitter(
-            chunk_size=400,
+            chunk_size=500,
             chunk_overlap=50,
         )
         all_docs.extend(splitter.split_documents(docs))
@@ -142,67 +142,12 @@ def ask_llm(question, retriever, openai_api_key):
 
     prompt = f"""Answer using the context below. Keep it short.
 
-Context:
-{context}
+            Context:
+            {context}
 
-Question: {question}
-"""
+            Question: {question}
+    """
 
     response = llm.invoke(prompt)
     return response.content, docs
 
-
-# -------- MAIN (local test) --------
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
-
-    OPENAI_API_KEY   = os.getenv("OPENAI_API_KEY")
-    PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-    INDEX_NAME       = "rag-index"
-    test_pdf         = "document-loxford-company.pdf"
-
-    if not os.path.exists(test_pdf):
-        print("PDF file not found.")
-        exit(1)
-
-    pc = _make_pinecone_client(PINECONE_API_KEY)
-
-    if index_is_populated(pc, INDEX_NAME):
-        print("Index already populated — connecting directly...")
-        vectorstore = load_vector_store(OPENAI_API_KEY, PINECONE_API_KEY, INDEX_NAME)
-    else:
-        print("First run — ingesting PDF...")
-        with open(test_pdf, "rb") as fh:
-            docs = load_and_split_pdfs([fh])
-        print(f"  Total chunks: {len(docs)}")
-        vectorstore = build_vector_store(
-            docs,
-            openai_api_key=OPENAI_API_KEY,
-            pinecone_api_key=PINECONE_API_KEY,
-            index_name=INDEX_NAME,
-        )
-
-    retriever = get_retriever(vectorstore)
-
-    print("\n" + "="*50)
-    print("  RAG Chat ready. Type 'exit' to quit.")
-    print("="*50)
-
-    while True:
-        question = input("\nYour question: ").strip()
-        if not question:
-            continue
-        if question.lower() in {"exit", "quit", "q"}:
-            print("Goodbye!")
-            break
-
-        answer, retrieved_docs = ask_llm(question, retriever, OPENAI_API_KEY)
-
-        print("\n--- Retrieved Chunks ---")
-        for i, d in enumerate(retrieved_docs):
-            print(f"\n[Chunk {i+1}]")
-            print(d.page_content)
-
-        print("\n--- Answer ---")
-        print(answer)
