@@ -16,6 +16,9 @@ keys*
 
 README.secret
 README.furtive
+credentials.json
+token.json
+
 config.py
 *.mhtml
 *original*
