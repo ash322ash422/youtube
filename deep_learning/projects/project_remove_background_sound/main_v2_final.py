@@ -7,7 +7,6 @@
 
 import subprocess
 import os
-import shutil
 import sys
 import numpy as np
 import soundfile as sf
@@ -273,4 +272,22 @@ def clean_video_audio(input_mp4, output_mp4):
     
     
 if __name__ == "__main__":
-    clean_video_audio("my_video.mp4", "my_video_clean.mp4")
+    # clean_video_audio("my_video.mp4", "my_video_clean.mp4")
+
+    # Check if the user forgot to provide a filename
+    if len(sys.argv) < 2:
+        print("Error: Please provide an input video file.")
+        print("Usage: python script.py my_video.mp4")
+        sys.exit(1)
+        
+    # Get the input filename from the command line argument
+    user_input = sys.argv[1]
+    
+    # Separate the filename from its extension (e.g., 'my_video' and '.mp4')
+    file_name, file_extension = os.path.splitext(user_input)
+    
+    # Automatically create the output name with '_clean' appended
+    output_name = f"{file_name}_clean{file_extension}"
+    
+    # Run your cleaning function
+    clean_video_audio(user_input, output_name)

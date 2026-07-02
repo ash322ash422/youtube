@@ -1,4 +1,3 @@
-
 # STEP 1 IMPORT LIBRARIES
 
 import sqlite3
@@ -7,17 +6,15 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
-
-# STEP 2 CONNECT TO DATABASE
-
-# Replace with your database file
-conn = sqlite3.connect("business.db")
-
-# STEP 3 OPENAI CLIENT
-
+# STEP 2 OPENAI CLIENT
 load_dotenv() # Load variables from .env
 open_api_key = os.getenv("OPEN_AI_API_KEY") # Access them
 client = OpenAI(api_key=open_api_key)
+
+# STEP 3 CONNECT TO DATABASE
+# Replace with your database file
+conn = sqlite3.connect("business.db")
+
 
 # STEP 4: DATABASE SCHEMA
 
