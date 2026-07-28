@@ -1,0 +1,64 @@
+Multi-turn Conversation Demo
+============================================================
+
+Turn 1: User asks for academic related suggestions
+------------------------------------------------------------
+User: I am writing a master's thesis on genomics and have a 500GB dataset. What AWS storage and analytics tools should I use to process this on a student budget? .
+Assistant: Given your requirements for processing a 500GB genomics dataset on a student budget, I recommend using a combination of AWS storage and analyticsservices that are both cost-effective and scalable. Here's a detailed plan:
+
+### Storage
+
+1. **Amazon S3 (Simple Storage Service)**
+   - **Purpose**: Store your raw genomics data and processed outputs.
+   - **Cost**: S3 is relatively inexpensive for storage, with costs around $0.023/GB per month for S3 Standard storage. Additionally, S3 Glacier and S3 Glacier Deep Archive offer lower costs for infrequently accessed data.
+   - **Lifecycle Policies**: Use S3 Lifecycle policies to automatically transition data between different storage classes (e.g., from S3 Standard to S3 Intelligent Tiering, S3 Glacier, or S3 Glacier Deep Archive) to minimize costs.
+
+### Analytics
+
+2. **AWS Glue**
+   - **Purpose**: Extract, Transform, Load (ETL) your
+
+
+Turn 2: User asks for modifications
+------------------------------------------------------------
+User: That makes sense. If my university requires all raw patient data to remain strictly within European boundaries for compliance, how does that change the architecture?
+Assistant: If your university requires all raw patient data to remain within European boundaries for compliance, you'll need to ensure that your architecture adheres to these regulations. Here's how you can adjust the architecture to meet these requirements:
+
+### Storage
+
+1. **Amazon S3 with S3 Transfer Acceleration**
+   - **Region Selection**: Choose an S3 bucket in a European region (e.g., Ireland - eu-west-1) to ensure the data remains within European boundaries.
+   - **S3 Transfer Acceleration**: This can be used to speed up the upload and download of data to/from the S3 bucket, which can be beneficial for large datasets.
+
+### Data Processing
+
+2. **AWS Glue**
+   - **Region Selection**: Deploy AWS Glue in the same European region as your S3 bucket.
+   - **Data Processing**: Use Glue to process and transform your data within the EU, ensuring that all raw patient data is handled within the region.
+
+3. **Amazon
+
+
+Turn 3: User asks for cost information
+------------------------------------------------------------
+User: How much would this cost me ?
+Assistant: Estimating the costs for your genomics data processing on AWS within European boundaries involves several components: storage, data transfer, andcompute costs. Below are rough estimates based on typical usage patterns and AWS pricing as of the latest available information. Note that actual costs can vary based on specific usage patterns and any applicable discounts.
+
+### Storage Costs
+
+1. **Amazon S3**
+   - **Storage Cost**: Approximately $0.023/GB per month for S3 Standard storage in the EU.
+   - **Data Transfer Cost**: Data transfer out of S3 to the internet is free, but data transfer out of AWS within the EU can incur costs (around €0.09/GB).
+
+2. **Amazon S3 Glacier**
+   - **Storage Cost**: Approximately €0.004/GB per month.
+   - **Retrieval Cost**: ~$0.03/GB for expedited retrievals, $0.01/GB for standard retrievals.
+
+### Data Processing
+
+Final Turn Token Usage:
+  Input tokens: 504 (includes full history)
+  Output tokens: 200
+
+============================================================
+Note: Each API call includes the FULL conversation history.

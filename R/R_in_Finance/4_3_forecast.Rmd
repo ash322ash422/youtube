@@ -1,0 +1,214 @@
+---
+title: "Financial Forecasting in R"
+subtitle: "Time-Series Prediction with the forecast Package"
+output: html_notebook
+---
+
+# 1. Forecast: Time-Series Prediction
+
+### What is Forecasting?
+
+Forecasting uses historical data to predict future values.
+
+In Finance, forecasting is used for: - Stock Prices - Interest Rates - Exchange Rates - Sales Revenue - Economic Indicators
+
+Popular Forecasting Models: - ARIMA - ETS (Exponential Smoothing) - Moving Average
+
+### Install Required Package (Once)
+
+```{r eval=FALSE}
+install.packages("forecast")
+```
+
+### Load Required Package
+
+```{r message=FALSE, warning=FALSE}
+library(forecast)
+```
+
+### Create Sample Financial Data
+
+Suppose this represents a stock's monthly closing price.
+
+```{r}
+stock_prices <- c(
+  100,102,105,107,110,112,
+  115,117,120,123,125,128
+)
+
+stock_prices
+```
+
+### Convert to Time Series
+
+```{r}
+stock_ts <- ts(stock_prices,
+               start = c(2025,1),
+               frequency = 12)
+
+stock_ts
+```
+
+### Visualize the Trend
+
+```{r}
+plot(stock_ts,
+     main="Monthly Stock Prices",
+     ylab="Price",
+     xlab="Month")
+```
+
+**Discussion Point for Students:** \> *Question:* Is the stock moving upward or downward? \> *Answer:* Upward trend.
+
+------------------------------------------------------------------------
+
+-------------------------
+
+# 2. ARIMA Forecasting
+
+### What is ARIMA?
+
+ARIMA learns patterns from historical data and predicts future values. It is widely used in stock analysis, interest rate forecasting, and economic modeling.
+
+### Build ARIMA Model
+
+R automatically selects the best ARIMA parameters when using `auto.arima()`.
+
+```{r}
+arima_model <- auto.arima(stock_ts)
+
+arima_model
+```
+
+### Predict Next 6 Months
+
+```{r}
+arima_forecast <- forecast(arima_model, h = 6)
+
+arima_forecast
+```
+
+### Plot Forecast
+
+```{r}
+plot(arima_forecast, main="ARIMA Stock Price Forecast")
+```
+
+**Interpretation Key:**
+
+\- **Black Line:** Historical prices
+
+ - **Blue Line Extension:** Predicted future stock prices
+
+\- **Shaded Region:** Uncertainty/confidence interval
+
+------------------------------------------------------------------------
+
+-----------------------
+
+# 3. ETS Forecasting
+
+### What is ETS?
+
+ETS stands for **Error, Trend, and Seasonality**. It is another popular exponential smoothing framework for forecasting.
+
+### Build ETS Model
+
+```{r}
+ets_model <- ets(stock_ts)
+
+ets_model
+```
+
+### Forecast Next 6 Months
+
+```{r}
+ets_forecast <- forecast(ets_model, h = 6)
+
+ets_forecast
+```
+
+### Plot ETS Forecast
+
+```{r}
+plot(ets_forecast, main="ETS Stock Price Forecast")
+```
+
+------------------------------------------------------------------------
+
+------------------
+
+# 4. Compare ARIMA and ETS
+
+```{r}
+plot(arima_forecast, main="ARIMA vs ETS")
+lines(ets_forecast$mean, col="red", lwd=2)
+```
+
+**Interpretation Key:**
+
+\- **Blue Line:** ARIMA prediction
+
+ - **Red Line:** ETS prediction
+
+\- *Note:* Different models can produce slightly different mathematical trajectories based on how they weight historical data.
+
+------------------------------------------------------------------------
+
+# 5. Real Financial Example: Interest Rates
+
+### Create Interest Rate Dataset
+
+```{r}
+interest_rates <- c(
+  5.0,5.1,5.2,5.3,5.4,5.5,
+  5.6,5.7,5.8,5.9,6.0,6.1
+)
+
+rate_ts <- ts(interest_rates, frequency = 12)
+```
+
+### Forecast Future Interest Rates
+
+```{r}
+rate_model <- auto.arima(rate_ts)
+rate_forecast <- forecast(rate_model, h = 6)
+
+plot(rate_forecast, main="Interest Rate Forecast")
+```
+
+------------------------------------------------------------------------
+
+# 6. Forecast Accuracy
+
+How well does the model fit past data? We use evaluation metrics to check performance.
+
+```{r}
+accuracy(arima_forecast)
+```
+
+**Common Metrics:** - **MAE:** Mean Absolute Error - **RMSE:** Root Mean Square Error - *Rule:* Smaller error values indicate better, tighter mathematical predictions.
+
+**Quick Business Interpretation:** If your forecast output shows: - Month 13: 130 - Month 14: 132 - Month 15: 134
+
+> *Takeaway:* Based purely on historical trends, the asset value is structurally expected to continue its upward expansion over the next quarter.
+
+------------------------------------------------------------------------
+
+# Final Lesson Summary
+
+### ARIMA
+
+✔ Learns patterns from historical data (`auto.arima()`, `forecast()`)
+
+ - Used for volatile market assets, stock prices, and economic indicators.
+
+### ETS
+
+✔ Models error, trend, and seasonality directly (`ets()`, `forecast()`)
+
+\- Excellent for smooth, seasonal business trends and revenue forecasting.
+
+### Visualizing Forecasts
+
+✔ `plot(forecast_object)` plots history, predictions, and confidence risk blocks instantly.

@@ -1,0 +1,81 @@
+GLOBAL INSTITUTE OF ADVANCED STUDIES
+
+Official Course Catalog & Academic Syllabus
+
+About Our Institution
+Welcome to the Global Institute of Advanced Studies. Our curriculum is engineered to bridge foundational
+theory with cutting-edge industry applications. This catalog outlines our core programmatic offerings across
+three key departments, meticulously structured to prepare students for institutional leadership, industrial
+innovation, and scientific research. Each course carries four academic credits and requires a minimum grade of
+C to count toward degree completion
+
+
+Department of Computer Science & Engineering
+
+CS-101: Introduction to Algorithmic Thinking
+An entry-level exploration of problem-solving methodologies using computers. Students learn to dissect
+complex computational tasks into logical steps, mastering core concepts such as loops, conditional statements,
+recursion, and elementary debugging. The practical segment introduces Python as a primary scripting
+language, focusing on clean coding practices, modular program architecture, and introductory computational
+complexity analysis.
+
+CS-204: Advanced Data Structures & Performance Analysis
+This intensive course dives deep into non-linear data structures and their relative systemic trade-offs. Topics
+include self-balancing binary search trees, hash tables with collision resolution strategies, graph
+representations, and advanced sorting algorithms. Students are evaluated on their ability to analyze runtime
+complexity using Big-O, Big-Omega, and Big-Theta notation, optimizing systems for memory and processing
+efficiency.
+
+CS-380: Distributed Systems & Cloud Architectures
+A comprehensive study of decentralized software ecosystems. The curriculum examines the core engineering
+principles behind modern cloud giants, highlighting network concurrency, consensus algorithms (Paxos, Raft),
+virtualization, and microservice meshes. Laboratory work requires designing fault-tolerant, horizontally scalable
+applications that maintain strict data consistency across multi-region server cluster deployments.
+
+
+Department of Business Administration
+
+BUS-110: Principles of Macroeconomic Strategy
+An foundational investigation into aggregate economic behavior and national financial performance. Students
+analyze the structural mechanics of inflation, unemployment metrics, gross domestic product calculations, and
+international trade balance frameworks. Particular emphasis is placed on evaluating fiscal and monetary policy
+interventions, equipping future executives to anticipate market fluctuations and geopolitical economic shifts.
+
+BUS-250: Corporate Finance & Capital Allocation
+An in-depth look into the financial mechanisms driving modern corporate operations. This syllabus covers the
+time value of money, discounted cash flow modeling, risk and return analytics, capital budgeting under
+uncertainty, and optimal capital structure theory. Case studies require students to evaluate corporate
+acquisitions, price complex debt instruments, and manage short-term working capital requirements for
+multinational entities.
+
+BUS-415: Strategic Leadership & Market Disruption
+Designed for graduating seniors, this seminar analyzes how organizations adapt, scale, or fail during seismic
+market transitions. Through exhaustive Harvard Business School case methodologies, students critique
+real-world organizational strategies, corporate turnarounds, and competitive positioning tactics. The final
+capstone requires delivering an executable corporate defense strategy against hypothetical venture-backed
+disruptive entrants.
+
+
+Department of Media & Communications
+
+MED-105: History of Mass Communication Ecosystems
+A historical and sociological survey tracing the evolution of human media infrastructure from Gutenberg's
+printing press to contemporary algorithmic social feeds. This course examines how shifts in delivery mechanics
+modify political discourse, cultural hegemony, and collective information processing. Students critique dominant
+media theory paradigms, including agenda-setting theory, framing effects, and the commodification of audience
+attention spans.
+
+MED-230: Digital Journalism, Ethics, & Investigative Reporting
+A hands-on workshop focused on high-integrity journalistic methods in an era of rapid information diffusion.
+Students learn stringent source verification, freedom-of-information archiving, deep metadata analysis, and
+investigative interview techniques. Concurrently, the course addresses severe ethical dilemmas, such as
+deep-fake recognition, navigating partisan editorial pressures, and maintaining strict objectivity under breaking
+news constraints.
+
+MED-395: Algorithmic Audience Engagement & Content Strategy
+This interdisciplinary module sits at the crossroads of data science and creative storytelling. Students explore
+the technical mechanics behind content recommendation loops, search engine visibility, predictive data
+analytics, and cross-platform native distribution frameworks. Students learn how to interpret granular
+demographic user retention matrices to formulate comprehensive, multimedia campaigns that organically scale
+digital audience loyalty.
+

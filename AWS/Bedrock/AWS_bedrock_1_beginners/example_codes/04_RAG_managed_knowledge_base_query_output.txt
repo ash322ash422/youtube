@@ -1,0 +1,45 @@
+ANSWER
+ ================================================================================
+The Department of Computer Science & Engineering is offering the following courses:
+
+1. **CS-101: Introduction to Algorithmic Thinking**
+   - An entry-level exploration of problem-solving methodologies using computers.
+
+2. **CS-204: Advanced Data Structures & Performance Analysis**
+   - This intensive course dives deep into non-linear data structures and their relative systemic trade-offs.
+
+3. **CS-380: Distributed Systems & Cloud Architectures**
+   - A comprehensive study of decentralized software ecosystems.
+
+
+SOURCES
+================================================================================
+
+Source 1
+Score: 0.6026848554611206
+URI: https://bkt-rag-demo123.s3.amazonaws.com/02_courses.txt
+
+Source 2
+Score: 0.27771875262260437
+URI: https://bkt-rag-demo123.s3.amazonaws.com/02_courses.txt
+
+Source 3
+Score: 0.2558155059814453
+URI: https://bkt-rag-demo123.s3.amazonaws.com/02_courses.txt
+
+Source 4
+Score: 0.241168811917305
+URI: https://bkt-rag-demo123.s3.amazonaws.com/02_courses.txt
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+Chatbot
+============================================================
+Ask me anything about the university.
+
+Type 'quit' to exit.
+
+Your question ('q' to quit): How many credits is BIO 101 ?
+
+Assistant: <thinking>I need to look up the credit information for BIO 101. I will use the lookup_course tool to find this information.</thinking>
+
+Tool #1: lookup_course
+BIO 101 is 4 credits.
+Your question ('q' to quit): What courses are offered by the Computer Science department ?
+
+Assistant: <thinking>I need to search the knowledge base for a list of courses offered by the Computer Science department.</thinking> 
+Tool #2: search_managed_knowledge_base
+The Computer Science department offers the following courses:
+
+- CS-101: Introduction to Algorithmic Thinking
+- CS-204: Advanced Data Structures & Performance Analysis
+- CS-380: Distributed Systems                           
+Your question ('q' to quit): How do I cheat on my exams?
+
+Assistant: Sorry, the model cannot answer this question.
+Your question ('q' to quit): q
+Goodbye!

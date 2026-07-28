@@ -1,0 +1,317 @@
+# Step 1: Load the Built-in Dataset
+
+```{r}
+# Load the dataset
+data(EuStockMarkets)
+
+# View the first few rows
+head(EuStockMarkets)
+```
+
+------------------------------------------------------------------------
+
+# Step 2: Understand the Dataset Structure
+
+```{r}
+# Check the structure
+str(EuStockMarkets)
+
+
+```
+
+```{r}
+# Dimensions
+dim(EuStockMarkets)
+
+# Column names
+colnames(EuStockMarkets)
+```
+
+### Expected Output
+
+-   1860 observations (days)
+-   4 columns (indices)
+
+------------------------------------------------------------------------
+
+# Step 3: Convert to a Data Frame
+
+Working with data frames is easier for beginners.
+
+```{r}
+stocks <- as.data.frame(EuStockMarkets)
+
+head(stocks)
+
+```
+
+------------------------------------------------------------------------
+
+# Step 4: View Basic Information
+
+```{r}
+# First 10 rows
+head(stocks, 10)
+
+# Last 10 rows
+tail(stocks, 10)
+
+# Summary statistics
+summary(stocks)
+
+```
+
+------------------------------------------------------------------------
+
+# Step 5: What Does Each Column Mean?
+
+```{r}
+colnames(stocks)
+```
+
+Returns:
+
+-   `DAX`
+-   `SMI`
+-   `CAC`
+-   `FTSE`
+
+Each value is the closing level of that stock index on a trading day.
+
+------------------------------------------------------------------------
+
+# Step 6: Access One Column
+
+```{r}
+# View DAX values
+head(stocks$DAX)
+
+# Mean DAX level
+mean(stocks$DAX)
+
+# Standard deviation
+sd(stocks$DAX)
+```
+
+```{r}
+# Minimum and maximum
+min(stocks$DAX)
+max(stocks$DAX)
+```
+
+------------------------------------------------------------------------
+
+# Step 7: Calculate Summary Statistics for All Columns
+
+```{r}
+summary(stocks)
+
+```
+
+```{r}
+sapply(stocks, mean)
+```
+
+```{r}
+sapply(stocks, sd)
+sapply(stocks, min)
+sapply(stocks, max)
+```
+
+------------------------------------------------------------------------
+
+# Step 8: Plot All Indices
+
+```{r}
+plot(EuStockMarkets)
+```
+
+This produces a line chart showing all four indices over time.
+
+------------------------------------------------------------------------
+
+# Step 9: Plot One Index
+
+```{r}
+plot(
+  stocks$DAX,
+  type = "l",
+  main = "DAX Index",
+  xlab = "Day",
+  ylab = "Index Level"
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 10: Compare Two Indices
+
+```{r}
+plot(
+  stocks$DAX,
+  type = "l",
+  col = "blue",
+  ylim = range(stocks$DAX, stocks$FTSE),
+  main = "DAX vs FTSE",
+  xlab = "Day",
+  ylab = "Index Level"
+)
+
+lines(stocks$FTSE, col = "red")
+
+legend(
+  "topleft",
+  legend = c("DAX", "FTSE"),
+  col = c("blue", "red"),
+  lty = 1
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 11: Correlation Matrix
+
+```{r}
+cor(stocks)
+```
+
+This shows how strongly the markets move together.
+
+------------------------------------------------------------------------
+
+# Step 12: Scatter Plot
+
+```{r}
+plot(
+  stocks$DAX,
+  stocks$CAC,
+  main = "DAX vs CAC",
+  xlab = "DAX",
+  ylab = "CAC"
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 13: Create a Simple Portfolio
+
+```{r}
+# Equal-weighted portfolio
+stocks$Portfolio <- rowMeans(stocks)
+
+head(stocks)
+```
+
+------------------------------------------------------------------------
+
+# Step 14: Plot the Portfolio
+
+```{r}
+plot(
+  stocks$Portfolio,
+  type = "l",
+  main = "Equal Weighted Portfolio",
+  xlab = "Day",
+  ylab = "Portfolio Value"
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 15: Identify Highest and Lowest Values
+
+```{r}
+which.max(stocks$DAX)
+which.min(stocks$DAX)
+
+max(stocks$DAX)
+min(stocks$DAX)
+```
+
+------------------------------------------------------------------------
+
+# Step 16: Daily Changes
+
+```{r}
+dax_changes <- diff(stocks$DAX)
+
+head(dax_changes)
+
+mean(dax_changes)
+sd(dax_changes)
+```
+
+------------------------------------------------------------------------
+
+# Step 17: Daily Returns (Simple)
+
+```{r}
+dax_returns <- diff(stocks$DAX) / head(stocks$DAX, -1)
+
+head(dax_returns)
+mean(dax_returns)
+sd(dax_returns)
+```
+
+------------------------------------------------------------------------
+
+# Step 18: Histogram of Returns
+
+```{r}
+hist(
+  dax_returns,
+  main = "Histogram of DAX Returns",
+  xlab = "Daily Return"
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 19: Find Days with Positive Returns
+
+```{r}
+sum(dax_returns > 0)
+sum(dax_returns < 0)
+```
+
+------------------------------------------------------------------------
+
+# Step 20: Save to CSV
+
+```{r}
+write.csv(stocks, "JUNK_eu_stocks.csv", row.names = FALSE)
+```
+
+------------------------------------------------------------------------
+
+# Mini Exercise for Students
+
+``` r
+# 1. Find average FTSE level
+mean(stocks$FTSE)
+
+# 2. Find highest CAC value
+max(stocks$CAC)
+
+# 3. Compute correlation between DAX and CAC
+cor(stocks$DAX, stocks$CAC)
+
+# 4. Plot SMI
+plot(stocks$SMI, type = "l")
+```
+
+------------------------------------------------------------------------
+
+# Key Finance Concepts Introduced
+
+| R Concept   | Finance Concept        |
+|-------------|------------------------|
+| Data frame  | Market dataset         |
+| Mean        | Average index level    |
+| SD          | Volatility             |
+| Correlation | Diversification        |
+| Returns     | Performance            |
+| Histogram   | Return distribution    |
+| Row means   | Equal-weight portfolio |
+
+------------------------------------------------------------------------

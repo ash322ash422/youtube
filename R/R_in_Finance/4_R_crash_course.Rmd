@@ -1,0 +1,238 @@
+```{r}
+print("Hello, World!")
+```
+
+```{r}
+print(2+5)
+
+print(2/5)
+
+# print(2*5)
+
+# print(2**5)
+```
+
+```{r}
+# Variables and data type
+name <- "Ash"
+age <- 35
+salary <- 55000.75
+is_teacher <- TRUE
+
+print(name)
+print(age)
+print(salary)
+print(is_teacher)
+
+class(name)
+class(age)
+class(salary)
+class(is_teacher)
+```
+
+```{r}
+# Basic Arithmatic
+
+a <- 10
+b <- 3
+
+a + b
+a - b
+a * b
+a / b
+a ^ b     # power
+a %% b    # remainder
+a %/% b   # integer division
+```
+
+```{r}
+# Vectors (Most Important Data Structure)
+numbers <- c(10, 20, 30, 40, 50)
+
+print(numbers)
+length(numbers)
+sum(numbers)
+mean(numbers)
+max(numbers)
+min(numbers)
+```
+
+```{r}
+# Access Elements
+numbers <- c(10, 20, 30, 40, 50)
+
+numbers[1]      # first element
+numbers[3]
+numbers[2:4]
+```
+
+```{r}
+# Vectorized Operations
+numbers <- c(10, 20, 30, 40, 50)
+
+numbers * 2
+numbers + 5
+numbers > 25
+```
+
+```{r}
+# 5. Character Vectors
+fruits <- c("Apple", "Banana", "Mango")
+
+print(fruits)
+toupper(fruits)
+tolower(fruits)
+```
+
+```{r}
+# 6. Logical Vectors
+scores <- c(45, 72, 88, 30, 95)
+
+scores > 50
+```
+
+```{r}
+# 7. Indexing and Filtering
+scores <- c(45, 72, 88, 30, 95)
+
+scores[scores > 50]
+scores[scores < 50]
+```
+
+```{r}
+# Lists
+
+student <- list(
+  name = "John",
+  age = 22,
+  marks = c(80, 90, 85)
+)
+
+print(student)
+
+# student$name
+
+# student$marks
+```
+
+```{r}
+# Data Frames (Most Useful Structure)
+
+customers <- data.frame(
+  Name = c("Juan", "Ali", "Mohammed", "Ashwani"),
+  Age = c(21, 22, 20, 32),
+  Score = c(88, 76, 93, 75)
+)
+
+print(customers)
+```
+
+```{r}
+# Explore Data Frame
+
+customers <- data.frame(
+  Name = c("Juan", "Ali", "Mohammed", "Ashwani"),
+  Age = c(21, 22, 20, 32),
+  Score = c(88, 76, 93, 75)
+)
+
+str(customers)
+
+```
+
+```{r}
+summary(customers)
+
+```
+
+```{r}
+nrow(customers)
+
+```
+
+```{r}
+ncol(customers)
+
+```
+
+```{r}
+colnames(customers)
+```
+
+```{r}
+# Access Columns
+customers$Name
+customers$Score
+mean(customers$Score)
+```
+
+```{r}
+# Add New Column
+
+customers$Passed <- customers$Score >= 80
+print(customers)
+```
+
+```{r}
+# Reading and Writing CSV Files
+write.csv(customers, "customers.csv", row.names = FALSE)
+
+data <- read.csv("customers.csv")
+print(data)
+```
+
+```{r}
+# Conditional Statements
+score <- 85
+
+if (score >= 80) {
+  print("Excellent")
+} else if (score >= 50) {
+  print("Pass")
+} else {
+  print("Fail")
+}
+```
+
+```{r}
+# Loops
+
+for (i in 1:5) {
+  print(i*7)
+}
+```
+
+```{r}
+# While Loop
+x <- 1
+
+while (x <= 5) {
+  print(x*7)
+  x <- x + 1
+}
+```
+
+```{r}
+# Functions
+add_numbers <- function(a, b) {
+  result <- a + b
+  return (result)
+}
+
+add_numbers(10, 20)
+```
+
+```{r}
+# Useful Built-in Functions
+seq(1, 10)
+rep("R", 5)
+sort(c(5, 2, 8, 1))
+unique(c(1, 2, 2, 3, 3, 4))
+```
+
+```{r}
+# 
+ls()        # list variables
+rm(a)       # remove one variable
+rm(list = ls())  # remove everything
+```

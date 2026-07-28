@@ -1,0 +1,26 @@
+Bedrock Tool Use Demo
+============================================================
+User: What's the weather like in Seattle right now?
+
+[Step 1] Sending message to model with tool definitions...
+  Model responded with stop reason: tool_use
+
+[Step 2] Model wants to call: get_weather
+  With arguments: {
+  "location": "Seattle"
+}
+
+[Step 3] Function returned: {
+  "location": "Seattle, United States",
+  "temperature": 60.3,
+  "unit": "fahrenheit",
+  "condition": "Clear/Partly cloudy",
+  "humidity": "87%",
+  "wind": "8.2 mph"
+}
+
+[Step 4] Sending tool result back to model...
+
+Assistant: <thinking>I have the weather information for Seattle. I will now present this information to the User.</thinking>
+
+The current weather in Seattle is 60.3 degrees Fahrenheit, with a humidity of 87%. The condition is clear with some parts being partly cloudy. The wind speed is 8.2 mph.

@@ -1,0 +1,289 @@
+# Beginner’s Guide to Data Analysis in R with the `iris` Dataset
+
+The `iris` dataset is one of the most famous datasets in data science and statistics. It contains measurements of 150 flowers from three species.
+
+### Species Included
+
+-   Setosa
+-   Versicolor
+-   Virginica
+
+### Features Measured
+
+-   Sepal Length
+-   Sepal Width
+-   Petal Length
+-   Petal Width
+
+This dataset is excellent for teaching:
+
+-   Data exploration
+-   Summary statistics
+-   Filtering
+-   Grouped analysis
+-   Basic visualization
+
+------------------------------------------------------------------------
+
+# Step 1: Load the Dataset
+
+```{r}
+# Load the built-in dataset
+data(iris)
+
+# View first 6 rows
+head(iris)
+```
+
+------------------------------------------------------------------------
+
+# Step 2: Understand the Structure
+
+```{r}
+str(iris)
+dim(iris)
+colnames(iris)
+```
+
+### Output
+
+-   150 rows
+-   5 columns
+-   4 numeric columns
+-   1 categorical column (`Species`)
+
+------------------------------------------------------------------------
+
+# Step 3: View Basic Statistics
+
+```{r}
+summary(iris)
+```
+
+This gives:
+
+-   Minimum
+-   1st Quartile
+-   Median
+-   Mean
+-   3rd Quartile
+-   Maximum
+
+------------------------------------------------------------------------
+
+# Step 4: Inspect Individual Columns
+
+```{r}
+mean(iris$Sepal.Length)
+sd(iris$Sepal.Length)
+min(iris$Sepal.Length)
+max(iris$Sepal.Length)
+```
+
+------------------------------------------------------------------------
+
+# Step 5: Count Species
+
+```{r}
+table(iris$Species)
+```
+
+Each species has 50 observations.
+
+------------------------------------------------------------------------
+
+# Step 6: Access Rows and Columns
+
+```{r}
+# First row
+iris[1, ]
+
+# First 5 rows
+iris[1:5, ]
+
+# Species column
+iris$Species
+
+# First two columns
+iris[, 1:2]
+```
+
+------------------------------------------------------------------------
+
+# Step 7: Filter Data
+
+```{r}
+# All Setosa flowers
+setosa <- iris[iris$Species == "setosa", ]
+
+head(setosa)
+```
+
+------------------------------------------------------------------------
+
+# Step 8: Multiple Conditions
+
+```{r}
+large_petals <- iris[
+  iris$Petal.Length > 5 &
+  iris$Species == "virginica",
+]
+
+head(large_petals)
+```
+
+------------------------------------------------------------------------
+
+# Step 9: Sort Data
+
+```{r}
+# Sort by Petal Length
+iris_sorted <- iris[order(iris$Petal.Length), ]
+
+head(iris_sorted)
+tail(iris_sorted)
+```
+
+------------------------------------------------------------------------
+
+# Step 10: Add a New Column
+
+```{r}
+iris$Petal.Area <- iris$Petal.Length * iris$Petal.Width
+
+head(iris)
+```
+
+------------------------------------------------------------------------
+
+# Step 11: Grouped Means
+
+```{r}
+aggregate(
+  cbind(Sepal.Length, Petal.Length) ~ Species,
+  data = iris,
+  mean
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 12: Grouped Standard Deviations
+
+```{r}
+aggregate(
+  Petal.Length ~ Species,
+  data = iris,
+  sd
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 13: Correlation Matrix
+
+```{r}
+numeric_iris <- iris[, 1:4]
+
+cor(numeric_iris)
+```
+
+------------------------------------------------------------------------
+
+# Step 14: Scatter Plot
+
+```{r}
+plot(
+  iris$Sepal.Length,
+  iris$Petal.Length,
+  main = "Sepal Length vs Petal Length",
+  xlab = "Sepal Length",
+  ylab = "Petal Length"
+)
+```
+
+```{r}
+species_colors <- as.numeric(iris$Species)
+
+plot(
+  iris$Sepal.Length,
+  iris$Petal.Length,
+  col = species_colors,
+  pch = 19
+)
+
+```
+
+------------------------------------------------------------------------
+
+# Step 15: Boxplot by Species
+
+```{r}
+boxplot(
+  Petal.Length ~ Species,
+  data = iris,
+  main = "Petal Length by Species"
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 16: Histograms
+
+```{r}
+hist(
+  iris$Sepal.Length,
+  main = "Histogram of Sepal Length",
+  xlab = "Sepal Length"
+)
+```
+
+------------------------------------------------------------------------
+
+# Step 17: Pairs Plot
+
+```{r}
+pairs(iris[, 1:4])
+```
+
+------------------------------------------------------------------------
+
+# Step 18: Simple Rule-Based Classification
+
+```{r}
+iris$Prediction <- ifelse(
+  iris$Petal.Length < 2,
+  "setosa",
+  "other"
+)
+
+table(Actual = iris$Species, Predicted = iris$Prediction)
+```
+
+------------------------------------------------------------------------
+
+# Step 19: Save to CSV
+
+```{r}
+write.csv(iris, "iris_data.csv", row.names = FALSE)
+```
+
+------------------------------------------------------------------------
+
+# Step 20: Mini Exercises
+
+``` r
+# 1. Average Petal Width
+mean(iris$Petal.Width)
+
+# 2. Number of Virginica flowers
+sum(iris$Species == "virginica")
+
+# 3. Maximum Sepal Length
+max(iris$Sepal.Length)
+
+# 4. Correlation between Petal Length and Petal Width
+cor(iris$Petal.Length, iris$Petal.Width)
+```
+
+------------------------------------------------------------------------

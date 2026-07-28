@@ -1,0 +1,235 @@
+---
+title: "Financial Analytics in R"
+---
+
+# 1. Tidyverse: Data Wrangling & Transformation
+
+### What is Tidyverse?
+
+Tidyverse is a collection of packages used for: - Reading data - Cleaning data - Filtering records - Creating new variables - Summarizing data
+
+Common packages: - `readr` $\rightarrow$ Import data - `dplyr` $\rightarrow$ Manipulate data - `tidyr` $\rightarrow$ Reshape data
+
+### Load Package
+
+```{r}
+library(tidyverse)
+```
+
+### Create Sample Financial Dataset
+
+```{r}
+stocks <- data.frame(
+  Company = c("TCS","Infosys","Wipro","HCL","TechM"),
+  Price = c(3500, 1600, 450, 1200, 1400),
+  Volume = c(10000, 15000, 8000, 12000, 9000)
+)
+
+stocks
+```
+
+### Select Columns
+
+```{r}
+stocks %>%
+  select(Company, Price)
+```
+
+### Filter Expensive Stocks
+
+```{r}
+stocks %>%
+  filter(Price > 1500)
+```
+
+### Create New Column
+
+Suppose market value = Price $\times$ Volume
+
+```{r}
+stocks %>%
+  mutate(MarketValue = Price * Volume)
+```
+
+### Sort by Price
+
+```{r}
+stocks %>%
+  arrange(desc(Price))
+```
+
+### Summary Statistics
+
+```{r}
+stocks %>%
+  summarise(
+    AveragePrice = mean(Price),
+    TotalVolume = sum(Volume)
+  )
+```
+
+### Key Point: dplyr makes code readable
+
+```{r}
+stocks %>%
+  filter(Price > 1000) %>%
+  arrange(desc(Price))
+```
+
+*Read as: Take stocks* $\rightarrow$ Filter $\rightarrow$ Sort
+
+------------------------------------------------------------------------
+
+------------------------------
+
+# 2. Quantmod: Quantitative Financial Modelling
+
+### What is Quantmod?
+
+Quantmod helps us: - Download stock prices - Create stock charts - Calculate indicators - Analyze trends
+
+### Install (Once)
+
+```{r eval=FALSE}
+install.packages("quantmod")
+```
+
+### Load Package
+
+```{r}
+library(quantmod)
+```
+
+### Download Apple Stock Data
+
+```{r message=FALSE, warning=FALSE}
+getSymbols("AAPL")
+```
+
+*This downloads Apple stock prices.*
+
+### View Data
+
+```{r}
+head(AAPL)
+```
+
+### Basic Stock Chart
+
+```{r}
+chartSeries(AAPL)
+```
+
+### Add Moving Average
+
+Moving Average helps identify trends.
+
+```{r}
+chartSeries(AAPL)
+addSMA(20, col="blue")
+```
+
+*20-Day Moving Average appears on chart.*
+
+### Calculate Returns
+
+```{r}
+daily_returns <- dailyReturn(Cl(AAPL))
+head(daily_returns)
+```
+
+*Where `Cl(AAPL)` means Closing Price.*
+
+### Finance Interpretation
+
+If return = `0.02`, then the stock gained **2%** for that day.
+
+------------------------------------------------------------------------
+
+------------------------
+
+# 3. ggplot2: Professional Visualization (5 Minutes)
+
+### What is ggplot2?
+
+Used for: - Financial dashboards - Trend analysis - Statistical graphics - Business reporting
+
+### Load Package
+
+```{r}
+library(ggplot2)
+```
+
+### Sample Stock Prices
+
+```{r}
+stock_data <- data.frame(
+  Day = 1:10,
+  Price = c(100,105,110,108,115,120,118,125,130,135)
+)
+
+stock_data
+```
+
+### Line Chart
+
+```{r}
+ggplot(stock_data, aes(x = Day, y = Price)) +
+  geom_line()
+```
+
+### Better Looking Chart
+
+```{r}
+ggplot(stock_data, aes(x = Day, y = Price)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3) +
+  labs(
+    title = "Stock Price Trend",
+    x = "Trading Day",
+    y = "Price"
+  )
+```
+
+### Bar Chart (Trading Volume Example)
+
+```{r}
+volume_data <- data.frame(
+  Company = c("TCS","Infosys","Wipro","HCL"),
+  Volume = c(10000,15000,8000,12000)
+)
+
+ggplot(volume_data, aes(x = Company, y = Volume)) +
+  geom_bar(stat = "identity")
+```
+
+### Scatter Plot (Price vs Volume)
+
+```{r}
+ggplot(stocks, aes(x = Volume, y = Price)) +
+  geom_point(size = 4)
+```
+
+------------------------------------------------------------------------
+
+# Final Summary Slide
+
+### Tidyverse
+
+✔ Clean and transform financial data: `filter()`, `select()`, `mutate()`, `summarise()`
+
+### Quantmod
+
+✔ Download stock prices: `getSymbols()`
+
+✔ Technical indicators: `addSMA()`, `dailyReturn()`
+
+✔ Financial charts: `chartSeries()`
+
+### ggplot2
+
+✔ Professional visualizations: `geom_line()`, `geom_bar()`, `geom_point()`
+
+✔ Financial dashboards and reports
+
+### 

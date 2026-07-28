@@ -1,0 +1,177 @@
+---
+title: "R Integration with Financial Data Sources"
+subtitle: "Automating Live Financial Data Feeds"
+output: html_notebook
+---
+
+# Introduction: What is R Integration?
+
+R can directly connect to live external resources:
+
+\- Stock Market Data
+
+\- Economic Indicators
+
+\- Financial APIs
+
+\- Online Data Sources
+
+**Why do analysts use this?** - Download data automatically with code instead of pointing-and-clicking. - Build completely reproducible research scripts. - Avoid slow, error-prone manual Excel downloads.
+
+------------------------------------------------------------------------
+
+# 1. quantmod: Stock Data & Traditional Charts
+
+### Purpose
+
+Used for downloading stock prices, creating native financial charts, and quickly applying traditional technical analysis indicators.
+
+### Load Package
+
+```{r message=FALSE, warning=FALSE}
+library(quantmod)
+```
+
+### Download Apple Stock Data
+
+```{r message=FALSE, warning=FALSE}
+getSymbols("AAPL")
+```
+
+### View Data Structure
+
+```{r}
+head(AAPL)
+```
+
+### Plot Stock Prices Inline
+
+```{r}
+chartSeries(AAPL)
+```
+
+> **Key Point:** `quantmod` = Quick Financial Data + Native Financial Charts
+
+------------------------------------------------------------------------
+
+-----------------------------------
+
+# 2. tidyquant: The Tidyverse for Finance
+
+### Purpose
+
+Combines the power of **Tidyverse** data manipulation with **Financial Data structures**. It turns financial data into data frames (`tibbles`) that work flawlessly with familiar `dplyr` and `ggplot2` syntax.
+
+```         
+```
+
+```{r}
+install.packages("tidyquant")
+```
+
+### Load Package
+
+```{r message=FALSE, warning=FALSE}
+library(tidyquant)
+```
+
+### Download Stock Data into a Tidy Data Frame
+
+```{r message=FALSE, warning=FALSE}
+apple <- tq_get(
+  "AAPL",
+  from = "2025-01-01"
+)
+
+head(apple)
+```
+
+### Calculate Average Closing Price using dplyr Syntax
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+apple %>%
+  summarise(
+    Avg_Close = mean(close)
+  )
+```
+
+> **Key Point:** `tidyquant` = Comprehensive Financial Analysis using Tidyverse Workflows
+
+------------------------------------------------------------------------
+
+--------------------
+
+# 3. httr: Connecting to Custom Financial Web APIs
+
+### Purpose
+
+Connects R to external Web APIs. This is essential for sourcing unstructured data not covered by financial packages, such as live exchange rates, cryptocurrency tickers, and macroeconomic databases.
+
+### Load Package
+
+```{r message=FALSE, warning=FALSE}
+library(httr)
+```
+
+### Make a Live API Request (Free Exchange Rate API)
+
+```{r}
+response <- GET(
+  "https://api.exchangerate-api.com/v4/latest/USD"
+)
+
+response
+```
+
+### Convert Raw API JSON Response to Text
+
+```{r}
+content(response, "text")
+```
+
+> **Key Point:** `httr` = Connect R directly to any custom web API or data stream
+
+------------------------------------------------------------------------
+
+```{r}
+library(httr)
+library(jsonlite)
+
+response <- GET(
+  "https://api.exchangerate-api.com/v4/latest/USD"
+)
+
+data <- fromJSON(content(response, "text"))
+
+str(data)
+```
+
+# Core Concept Workflow
+
+### The Traditional Old Way (Inefficient)
+
+``` text
+Website → Manually Download CSV → Open Excel → Copy/Paste/Clean → Import into R
+```
+
+### The Automated R Way (Productive)
+
+``` text
+R Script → Automatically Fetch Data → Analyze Instantly → Live Visualization
+```
+
+------------------------------------------------------------------------
+
+# Lesson Summary
+
+| Package | Core Technical Purpose |
+|:-----------------------------------|:-----------------------------------|
+| **`quantmod`** | Quick market data scraping and immediate native charting. |
+| **`tidyquant`** | Converts market data into neat data frames for Tidyverse flows. |
+| **`httr`** | Connects R directly to custom HTTP REST APIs (Crypto, FX, Economics). |
+
+**Why should a quantitative analyst use tools like quantmod, tidyquant, and httr?** \> *Answer:* These packages allow R to bypass manual downloads and pipe web-hosted financial data directly into memory. This eliminates Excel manual errors, automates recurring data refreshes, and ensures the entire analytics workflow is perfectly reproducible.

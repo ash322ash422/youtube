@@ -1,0 +1,281 @@
+# AirPassengers Dataset in R
+
+### Equivalent to Seaborn's`flights` Dataset
+
+The built-in `AirPassengers` dataset in R contains monthly airline passenger counts from 1949 to 1960.
+
+------------------------------------------------------------------------
+
+## 1. Load the Dataset
+
+```{r}
+data(AirPassengers)
+```
+
+------------------------------------------------------------------------
+
+## 2. View the Dataset
+
+```{r}
+AirPassengers
+```
+
+------------------------------------------------------------------------
+
+## 3. Basic Information
+
+```{r}
+class(AirPassengers)
+length(AirPassengers)
+start(AirPassengers)
+end(AirPassengers)
+frequency(AirPassengers)
+```
+
+------------------------------------------------------------------------
+
+## 4. Plot the Time Series
+
+```{r}
+plot(
+  AirPassengers,
+  main = "Monthly Airline Passengers (1949–1960)",
+  xlab = "Year",
+  ylab = "Passengers"
+)
+```
+
+------------------------------------------------------------------------
+
+## 5. Summary Statistics
+
+```{r}
+summary(AirPassengers)
+mean(AirPassengers)
+sd(AirPassengers)
+min(AirPassengers)
+max(AirPassengers)
+```
+
+------------------------------------------------------------------------
+
+## 6. Convert to a Data Frame (Like Seaborn Flights)
+
+```{r}
+flights <- data.frame(
+  year = rep(1949:1960, each = 12),
+  month = factor(month.abb, levels = month.abb),
+  passengers = as.numeric(AirPassengers)
+)
+
+head(flights)
+tail(flights)
+```
+
+------------------------------------------------------------------------
+
+## 7. Check Structure
+
+```{r}
+str(flights)
+summary(flights)
+```
+
+------------------------------------------------------------------------
+
+## 8. Scatter Plot: Year vs Passengers
+
+```{r}
+plot(
+  flights$year,
+  flights$passengers,
+  pch = 19,
+  xlab = "Year",
+  ylab = "Passengers",
+  main = "Passengers Over Time"
+)
+```
+
+------------------------------------------------------------------------
+
+## 9. Color Points Automatically by Month
+
+```{r}
+plot(
+  flights$year,
+  flights$passengers,
+  col = as.numeric(flights$month),
+  pch = 19,
+  xlab = "Year",
+  ylab = "Passengers",
+  main = "Passengers Colored by Month"
+)
+
+legend(
+  "topleft",
+  legend = levels(flights$month),
+  col = 1:12,
+  pch = 19,
+  cex = 0.7
+)
+```
+
+------------------------------------------------------------------------
+
+## 10. Average Passengers by Month
+
+```{r}
+aggregate(
+  passengers ~ month,
+  data = flights,
+  FUN = mean
+)
+```
+
+------------------------------------------------------------------------
+
+## 11. Average Passengers by Year
+
+```{r}
+aggregate(
+  passengers ~ year,
+  data = flights,
+  FUN = mean
+)
+```
+
+------------------------------------------------------------------------
+
+## 12. Boxplot by Month
+
+```{r}
+boxplot(
+  passengers ~ month,
+  data = flights,
+  main = "Passenger Distribution by Month",
+  xlab = "Month",
+  ylab = "Passengers"
+)
+```
+
+------------------------------------------------------------------------
+
+## 13. Histogram of Passengers
+
+```{r}
+hist(
+  flights$passengers,
+  breaks = 20,
+  main = "Distribution of Passengers",
+  xlab = "Passengers"
+)
+```
+
+------------------------------------------------------------------------
+
+## 14. Find the Month with Highest Passengers
+
+```{r}
+flights[which.max(flights$passengers), ]
+```
+
+------------------------------------------------------------------------
+
+## 15. Filter Data for Year 1955
+
+```{r}
+flights[flights$year == 1955, ]
+```
+
+------------------------------------------------------------------------
+
+## 16. Filter Summer Months
+
+```{r}
+flights[
+  flights$month %in% c("Jun", "Jul", "Aug"),
+]
+```
+
+------------------------------------------------------------------------
+
+## 17. Monthly Growth
+
+```{r}
+flights$growth <- c(NA, diff(flights$passengers))
+head(flights, 10)
+```
+
+------------------------------------------------------------------------
+
+## 18. Percentage Growth
+
+```{r}
+flights$pct_growth <- c(
+  NA,
+  diff(flights$passengers) /
+    head(flights$passengers, -1) * 100
+)
+
+head(flights, 10)
+```
+
+------------------------------------------------------------------------
+
+## 19. Month with Largest Increase
+
+```{r}
+flights[which.max(flights$growth), ]
+```
+
+------------------------------------------------------------------------
+
+## 20. Save to CSV
+
+```{r}
+write.csv(
+  flights,
+  "flights.csv",
+  row.names = FALSE
+)
+```
+
+------------------------------------------------------------------------
+
+## 21. Mini Exercises
+
+```{r}
+# Average passengers
+mean(flights$passengers)
+
+# Maximum passengers
+max(flights$passengers)
+
+# Average passengers by month
+aggregate(passengers ~ month, flights, mean)
+
+# Plot with colors by month
+plot(
+  flights$year,
+  flights$passengers,
+  col = as.numeric(flights$month),
+  pch = 19
+)
+```
+
+------------------------------------------------------------------------
+
+## Key Concepts Covered
+
+-   Time series data
+-   Converting `ts` objects to data frames
+-   Summary statistics
+-   Scatter plots
+-   Automatic color mapping
+-   Grouped summaries with `aggregate()`
+-   Histograms and boxplots
+-   Growth calculations
+-   Filtering data
+
+```         
+```

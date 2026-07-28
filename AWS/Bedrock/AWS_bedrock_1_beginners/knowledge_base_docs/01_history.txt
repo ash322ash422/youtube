@@ -1,0 +1,30 @@
+Chapter 1: The Foundations of an Ideal (1902–1939)
+
+Foundation: Founded on October 14, 1902, in rural Yorkshire, England, by Dr. Alistair Loxford.
+
+Core Concepts: Uses the "Tri-Arch Pedagogy" (analytical science, classical humanities, physical engineering).
+
+Key Milestones: Starts with 14 students in Blackwood Hall. Maps Yorkshire caves in 1911 using an in-house mechanical surveying altimeter.
+
+
+Evolution: His daughter, Eleanor Loxford, takes over as Managing Director in 1928, purchases the 400-acre Ravenscroft Estate, and registers the firm as Loxford Academy Holdings Ltd. in 1935.
+
+
+
+Chapter 2: The Technological Pivot and Global Expansion (1940–1999)
+
+Wartime & Tech: Used as a computational lab during WWII. Dr. Thaddeus Vance joins in 1946 and creates the Department of Cybernetics and Automated Logic (1949).
+
+Global Expansion: Opens a corporate campus in Boston, Massachusetts (1972) and the Kyoto Research Outpost (1979).
+
+Software Era: Launches the Loxford Global Intranet (LGI) in 1988, which matures into the commercial learning management platform LoxNet in 1994. By 1999, software licensing makes up 60% of total revenue.
+
+
+Chapter 3: The Digital Frontier and Modern Era (2000–2026)
+
+Restructuring: Goes public on the London Stock Exchange in 2004 (Ticker: LXA). Builds the Loxford Sophia Core (a centralized semantic data repository).
+
+Acquisitions: Buys AI firm Synaptech (2012) and analytics platform Datavanguard (2015).
+
+Current State: Current CEO is Dr. Helena Vance (granddaughter of Thaddeus). In 2021, the original Blackwood Hall boarding school is closed and fully converted into a server farm and global operations command center. As of 2026, they employ 4,500 data engineers across 12 offices.
+

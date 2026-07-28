@@ -1,0 +1,265 @@
+---
+title: "Exploratory Data Analysis in R"
+subtitle: "Bank Marketing Dataset — A Finance Student's Guide"
+author: "Ashwani Kumar"
+date: "`r Sys.Date()`"
+output:
+  html_notebook:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    theme: flatly
+    highlight: tango
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,     # show R code
+  message = FALSE,    # suppress package messages
+  warning = FALSE,    # suppress warnings
+  fig.width  = 9,
+  fig.height = 5.5,
+  fig.align  = "center"
+)
+```
+
+------------------------------------------------------------------------
+
+# Introduction
+
+> **Dataset:** Bank Marketing (UCI / Kaggle)\
+> **Goal:** Did a client subscribe to a term deposit? (`y` = yes / no)\
+> **Context:** Phone-call marketing campaign data from a Portuguese bank.
+
+This notebook walks through a complete Exploratory Data Analysis (EDA) workflow.\
+By the end you will be able to:
+
+-   Load and inspect a real dataset\
+-   Understand variable types and summary statistics\
+-   Clean and transform data\
+-   Visualise distributions, relationships and patterns\
+-   Ask and answer business questions with code
+
+------------------------------------------------------------------------
+
+# Setup — Loading Packages
+
+R uses **packages** (libraries) to extend its base functionality.\
+We will use the `tidyverse` (a collection of data-science packages) and a few extras.
+
+```{r load-packages}
+# Install packages only if they are not already installed
+required_packages <- c("tidyverse", "skimr", "ggcorrplot", "scales", "knitr", "RColorBrewer")
+
+for (pkg in required_packages) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+# Load packages
+library(tidyverse)    # ggplot2, dplyr, tidyr, readr, etc.
+library(skimr)        # rich summary statistics
+library(ggcorrplot)   # correlation heatmaps
+library(scales)       # axis formatting (commas, percent)
+library(knitr)        # nice tables
+library(RColorBrewer) # colour palettes
+
+# A clean ggplot theme for all plots
+theme_set(theme_minimal(base_size = 13))
+```
+
+------------------------------------------------------------------------
+
+# Loading the Data
+
+The file uses **semicolons** as separators (common in European datasets).\
+We tell R about this with `read_delim()`.
+
+```{r load-data}
+# ── IMPORTANT ──────────────────────────────────────────────────────────────
+# Place bank.csv in your working directory, then run:
+#   setwd("path/to/your/folder")   # or use Session > Set Working Directory
+# ───────────────────────────────────────────────────────────────────────────
+
+bank <- read_delim("data_bank.csv", delim = ";", show_col_types = FALSE)
+
+# Peek at the first few rows
+head(bank, 8)
+```
+
+```{r dimensions}
+# How big is the dataset?
+cat("Rows   :", nrow(bank), "\n")
+cat("Columns:", ncol(bank), "\n")
+```
+
+------------------------------------------------------------------------
+
+# Understanding the Variables
+
+## Data Dictionary
+
+| Variable  | Type        | Description                                       |
+|----------------|----------------|-----------------------------------------|
+| age       | numeric     | Client age (years)                                |
+| job       | categorical | Type of job                                       |
+| marital   | categorical | Marital status                                    |
+| education | categorical | Education level                                   |
+| default   | binary      | Has credit in default?                            |
+| balance   | numeric     | Average yearly balance (euros)                    |
+| housing   | binary      | Has housing loan?                                 |
+| loan      | binary      | Has personal loan?                                |
+| contact   | categorical | Contact communication type                        |
+| day       | numeric     | Last contact day of month                         |
+| month     | categorical | Last contact month                                |
+| duration  | numeric     | Last contact duration (seconds)                   |
+| campaign  | numeric     | Number of contacts in this campaign               |
+| pdays     | numeric     | Days since last contact (-1 = never contacted)    |
+| previous  | numeric     | Contacts before this campaign                     |
+| poutcome  | categorical | Outcome of previous campaign                      |
+| **y**     | **binary**  | **Target: subscribed a term deposit? (yes / no)** |
+
+## Variable Types in R
+
+```{r variable-types}
+# glimpse() gives a compact overview of every column
+glimpse(bank)
+```
+
+```{r convert-factors}
+# Convert character columns to factors (R's category type)
+# Factors are essential for modelling and ordered plots
+
+categorical_vars <- c("job", "marital", "education", "default",
+                      "housing", "loan", "contact", "month",
+                      "poutcome", "y")
+
+bank <- bank %>%
+  mutate(across(all_of(categorical_vars), as.factor))
+
+# Verify
+glimpse(bank)
+```
+
+------------------------------------------------------------------------
+
+# Summary Statistics
+
+## Base R Summary
+
+```{r base-summary}
+summary(bank)
+```
+
+## Rich Summary with `skimr`
+
+`skim()` gives a much more informative snapshot — histograms included!
+
+```{r skim}
+skim(bank)
+```
+
+------------------------------------------------------------------------
+
+# Target Variable Analysis
+
+Before diving into features, always understand your **outcome variable**.
+
+```{r target-counts}
+# Frequency table
+bank %>%
+  count(y) %>%
+  mutate(pct = n / sum(n))
+```
+
+```{r target-bar, fig.height=4}
+bank %>%
+  count(y) %>%
+  mutate(pct = n / sum(n),
+         label = paste0(round(pct * 100, 1), "%")) %>%
+  ggplot(aes(x = y, y = n, fill = y)) +
+  geom_col(width = 0.5, show.legend = FALSE) +
+  geom_text(aes(label = label), vjust = -0.4, size = 5, fontface = "bold") +
+  scale_fill_manual(values = c("no" = "#e07070", "yes" = "#4caf7d")) +
+  scale_y_continuous(labels = comma) +
+  labs(
+    title    = "Term Deposit Subscription Rate",
+    subtitle = "Target variable distribution — class imbalance is evident",
+    x        = "Subscribed?",
+    y        = "Number of Clients"
+  )
+```
+
+> **Business Insight:** Only \~11–12 % of clients subscribed. This **class imbalance** matters when building predictive models later.
+
+------------------------------------------------------------------------
+
+# Univariate Analysis — One Variable at a Time
+
+## Numeric Variables
+
+### Age Distribution
+
+```{r age-hist}
+ggplot(bank, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "#4a90d9", colour = "white") +
+  geom_vline(xintercept = median(bank$age), linetype = "dashed",
+             colour = "firebrick", linewidth = 0.9) +
+  annotate("text", x = median(bank$age) + 2, y = Inf,
+           label = paste("Median =", median(bank$age)),
+           vjust = 1.5, hjust = 0, colour = "firebrick", size = 4.5) +
+  labs(title = "Distribution of Client Age",
+       x = "Age", y = "Count")
+```
+
+### Account Balance Distribution
+
+```{r balance-hist}
+# Balance has extreme outliers — log scale helps visualise
+bank %>%
+  filter(balance > 0) %>%          # log is undefined for 0 / negative
+  ggplot(aes(x = balance)) +
+  geom_histogram(bins = 60, fill = "#f5a623", colour = "white") +
+  scale_x_log10(labels = comma) +
+  labs(title = "Distribution of Account Balance (positive values, log scale)",
+       x = "Balance (€, log scale)", y = "Count")
+```
+
+```{}
+```
+
+### Call Duration
+
+```{r duration-box, fig.height=4}
+ggplot(bank, aes(x = duration)) +
+  geom_boxplot(fill = "#9b59b6", alpha = 0.7, outlier.colour = "grey50") +
+  scale_x_continuous(labels = comma) +
+  labs(title = "Boxplot: Last Call Duration (seconds)",
+       x = "Duration (s)", y = NULL) +
+  theme(axis.text.y = element_blank())
+```
+
+> **Key R concept — boxplot anatomy:**\
+> Box = IQR (Q1 to Q3) \| Line = Median \| Whiskers = 1.5 × IQR \| Dots = Outliers
+
+# Bivariate Analysis — Two Variables at a Time
+
+## Numeric vs. Target
+
+### Do subscribers have higher balances?
+
+```{r balance-median-table}
+bank %>%
+  group_by(y) %>%
+  summarise(
+    n           = n(),
+    Median_Bal  = median(balance),
+    Mean_Bal    = round(mean(balance), 0),
+    SD_Bal      = round(sd(balance), 0)
+  ) %>%
+  kable(caption = "Balance Statistics by Subscription Outcome")
+```
+
+### 
