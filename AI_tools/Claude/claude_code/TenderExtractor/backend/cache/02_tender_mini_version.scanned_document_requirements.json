@@ -1,0 +1,81 @@
+{
+  "target_heading": "list documents scanned and uploaded",
+  "matched_heading": "14. List of Documents to be scanned and uploaded within the period of bid submission:",
+  "match_score": 0.8286,
+  "page_number": 6,
+  "clauses": [],
+  "tables": [
+    {
+      "header": [
+        "(i)",
+        "Letter of Transmittal Duly signed as given in Annexure-III"
+      ],
+      "rows": [
+        [
+          "(ii)",
+          "Copy of receipt for deposition of original EMD (as given in Annexure - I) issued from division office of any Executive Engineer, CPWD. (Including NIT issuing EE/AE, CPWD) deposited in the form of lnsurance Surety Bonds, Account Payee Demand Draft, Fixed Deposit Receipt, Banker's Cheque or Bank Guarantee (For balance amount as prescribed) issued by a Commercial Bank against EMD (Bank Guarantee Format as given in Annxure-II)."
+        ],
+        [
+          "(iii)",
+          "Scan copy of the original EMD"
+        ],
+        [
+          "(iv)",
+          "CPWD Enlistment order of contractor wherever required as a proof of validity (This is required only for who is registered in CPWD)."
+        ],
+        [
+          "(v)",
+          "Permanent Account Number (PAN) Card as issued by the Income Tax Department."
+        ],
+        [
+          "(vi)",
+          "GST RegistrationCertificate, if already obtained by the bidder. If the bidder has not obtained GST registration as applicable, then such a case bidder shall furnish undertaking as given in Annxure- IV"
+        ],
+        [
+          "(vii)",
+          "Financial information as given in Form-A"
+        ],
+        [
+          "(viii)",
+          "Banker's certificate as given in Form-B OR Net worth Certificate issued by certified Chartered Accountants as given in Form-B1"
+        ],
+        [
+          "(ix)",
+          "Details of eligible similar nature of works completed during the last seven years ending on the last day of the month previous to one in which bids are invited as given in Form-C"
+        ],
+        [
+          "(x)",
+          "Details of Project Under Execution as given Form 'C-1'"
+        ],
+        [
+          "(xi)",
+          "Declaration of bidding capacity detail as given Form 'C-3'"
+        ],
+        [
+          "(xii)",
+          "Performance report of works as given in Form-D"
+        ],
+        [
+          "(xiii)",
+          "Structure & Organization as given in Form-E"
+        ],
+        [
+          "(xiv)",
+          "Copy of valid electrical license. The contractors shall be allowed to participate in tender with an undertaking that they will either obtain valid electrical license at the time of execution of electrical work or associates contractors having valid electrical license of eligible class."
+        ],
+        [
+          "(xv)",
+          "Undertaking by contractor on his Letter-Head in the following format: \"I/We Declare that, I/We have not been Debarred/Blacklisted by Central Government/State Government.\""
+        ],
+        [
+          "(xvi)",
+          "Undertaking by Contractor on his letter head in the following format: \"In case, I/We become first lowest tenderer and I/We are not eligible agency as per eligibility criteria; I/We will associate eligible agency fulfilling eligibility criteria as per NIT and I/We will submit documents as required.\""
+        ],
+        [
+          "(xvii)",
+          "ERP training certificate issued through LMS of ERP."
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "target_heading": "TERM AND CONDITION",
+  "matched_heading": "TERMS AND CONDITIONS",
+  "match_score": 0.9444,
+  "page_number": 6,
+  "clauses": [
+    {
+      "clause_no": "1",
+      "text": "Materials shall be got approved from the Engineer-in- Charge before use at site."
+    },
+    {
+      "clause_no": "2",
+      "text": "Any damages done to the building during the execution of work shall be made good for which nothing extra shall be paid on any account & to the entire satisfaction of Engineer-in- Charge."
+    },
+    {
+      "clause_no": "3",
+      "text": "No T&P shall have issued by the department."
+    },
+    {
+      "clause_no": "4",
+      "text": "Nothing extra shall be paid on account of cartage."
+    },
+    {
+      "clause_no": "5",
+      "text": "Contractor should employ well trained technical staff on carried out the work."
+    },
+    {
+      "clause_no": "6",
+      "text": "Contractor is responsible for safety of staff and installation during carrying out the work."
+    },
+    {
+      "clause_no": "7",
+      "text": "The contractor should give warranty for One year for the parts replaced/installed."
+    },
+    {
+      "clause_no": "8",
+      "text": "Unserviceable dismantle material received from the work shall credited to the contractor."
+    }
+  ],
+  "tables": [
+    {
+      "header": [
+        "S.No.",
+        "Description of Items",
+        "Unit",
+        "Rate"
+      ],
+      "rows": [
+        [
+          "1",
+          "2x1.5 sq.mm fire alarm armored cable",
+          "P/Mtrs",
+          "30"
+        ],
+        [
+          "2",
+          "Addressable photo thermal detector",
+          "Each",
+          "90"
+        ]
+      ]
+    }
+  ]
+}

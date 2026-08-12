@@ -1,0 +1,69 @@
+{
+  "target_heading": "list documents scanned and uploaded",
+  "matched_heading": "LIST OF DOCUMENTS",
+  "match_score": 0.8235,
+  "page_number": 6,
+  "clauses": [],
+  "tables": [
+    {
+      "header": [
+        "1.",
+        "Earnest Money Deposit:"
+      ],
+      "rows": [
+        [
+          "",
+          "Banker's Cheque of a Commercial Bank / Account Payee Demand Draft of a Commercial Bank / Fixed Deposit Receipt (FDR) of a Commercial Bank / Insurance Surety Bonds / Bank Guarantee including e- Bank Guarantee (for balance amount as prescribed) from a Commercial Bank against EMD."
+        ],
+        [
+          "2.",
+          "Copy of EMD receipt [Form F]: Copy of receipt for deposition of original EMD to division office of any EE, CPWD. Scanned copy of original Bank Guarantee including e-Bank Guarantee of any commercial Bank against EMD. (Note :- EMD is required to deposit in the office of Executive Engineer (E), DED-101, CPWD, Gate No. 6, North Block, New Delhi who is inviting bid or Division office of any Executive Engineer, CPWD within the period of bid submission)."
+        ],
+        [
+          "3.",
+          "Certificate of financial turn over from Chartered Accountant (Form - \"A\"): Certificate of Financial Turnover including Profit / Loss duly audited by Charted Accountant for the last 3 financial years ending 31st March 2024, as per Form A."
+        ],
+        [
+          "4.",
+          "Banker's Certificate / Net Worth Certificate (Form B/ B-1) Copy of Banker's Certificate or Net worth certificate (on the format prescribed in Form B or B1 as applicable)."
+        ],
+        [
+          "5.",
+          "Certificates of Work Experience as per Form C:"
+        ],
+        [
+          "",
+          "Details of Eligible Similar Nature of Works Completed During the Last Seven Years Ending Previous Day of Last Day of Submission of Tenders. [List of eligible similar nature of works completed during the last seven years ending last day of month previous to the one in which bids are invited including extended date, if any, in Form - C. If private works shown in support of eligibility, then certified copy of Tax Deducted at Source (TDS) certificate (Form 16A & 26A) shall be submitted along with experience certificate and the TDS amount shall tally with the actual amount of work done. Otherwise, the amount that tally with the TDS shall only be considered for eligibility.] NOTE: * Only eligible similar work fulfilling the eligibility criteria as per NIT shall be uploaded."
+        ],
+        [
+          "6.",
+          "Work Experience certificate of Completed works mentioned in Form-C, certified by owner department (Form-G)."
+        ],
+        [
+          "7.",
+          "Project under execution as per Form C1."
+        ],
+        [
+          "8.",
+          "Bidding capacity as per Form C3."
+        ],
+        [
+          "9.",
+          "Affidavit: Affidavit for eligible similar works not having been executed on back-to-back basis (Form- H)."
+        ],
+        [
+          "10.",
+          "GST Registration GST Registration certificate AND/OR Undertaking (Form \"M\"):"
+        ],
+        [
+          "",
+          "GST registration certificate of the state where the work is to executed, if already obtained by the bidder."
+        ],
+        [
+          "",
+          "If the bidder has not obtained GST registration as applicable, then in such a case the bidder shall upload the"
+        ]
+      ]
+    }
+  ]
+}

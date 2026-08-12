@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+cache/*.json
+cache/*.xlsx
+output/*.xlsx
+data_uploads/*.pdf
+!data_uploads/.gitkeep
+!cache/.gitkeep
+!output/.gitkeep

@@ -1,0 +1,38 @@
+{
+  "target_heading": "TERM AND CONDITION",
+  "matched_heading": "GENERAL TERMS AND CONDITIONS",
+  "match_score": 0.9444,
+  "page_number": 9,
+  "clauses": [
+    {
+      "clause_no": "1",
+      "text": "Before award of work, contractor is bound to submit the following details of workers proposed to be engaged by him along with PG, failing which the tender may be cancelled and the agency will not be allowed to re-participate for the above work. It is to be noted that PG will not be accepted without the following details: -"
+    }
+  ],
+  "tables": [
+    {
+      "header": [
+        "S.No.",
+        "Name of worker/ Employee",
+        "Category",
+        "Address",
+        "Qualification & Experience in case of skilled Worker",
+        "Adhar No. (Photo to enclosed)",
+        "Card copy be",
+        "Workers/Employee Bank Details i.e. A/c No., Bank & Branch (Copy of Cancelled Cheque/ photocopy of passbook to be enclosed)"
+      ],
+      "rows": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    }
+  ]
+}

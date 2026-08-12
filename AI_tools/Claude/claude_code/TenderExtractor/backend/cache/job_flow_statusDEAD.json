@@ -1,0 +1,41 @@
+{
+  "01_tender_mini_version.pdf": {
+    "blob_name": "01_tender_mini_version.pdf",
+    "status": "COMPLETED",
+    "error": null,
+    "download_url": null,
+    "failed_stage": "ocr"
+  },
+  "02_tender_mini_version.pdf": {
+    "blob_name": "02_tender_mini_version.pdf",
+    "status": "COMPLETED",
+    "error": null,
+    "download_url": "https://storetender.blob.core.windows.net/automation-file-processed/02_tender_mini_version.xlsx?se=2026-08-12T09%3A19%3A08Z&sp=r&sv=2026-06-06&sr=b&sig=0rtHjNR/T5hrZsZxvgVTgS0koL8gELHUKjLw1xpEfgU%3D"
+  },
+  "03_tender_mini_version.pdf": {
+    "blob_name": "03_tender_mini_version.pdf",
+    "status": "COMPLETED",
+    "error": null,
+    "failed_stage": "ocr",
+    "download_url": null
+  },
+  "01_tender_complete.pdf": {
+    "blob_name": "01_tender_complete.pdf",
+    "status": "COMPLETED",
+    "error": null,
+    "failed_stage": "extract_nit",
+    "download_url": "https://storetender.blob.core.windows.net/automation-file-processed/01_tender_complete.xlsx?se=2026-08-12T14%3A10%3A38Z&sp=r&sv=2026-06-06&sr=b&sig=RdSsGEEehnzvE4HZpK1mJiwzsOyfvqxzz3j0aO2AznM%3D"
+  },
+  "02_tender_complete.pdf": {
+    "blob_name": "02_tender_complete.pdf",
+    "status": "COMPLETED",
+    "error": null,
+    "download_url": "https://storetender.blob.core.windows.net/automation-file-processed/02_tender_complete.xlsx?se=2026-08-12T14%3A13%3A27Z&sp=r&sv=2026-06-06&sr=b&sig=QppgzuSgsUs4q/2hFxdkuGPQKg4k3mH4dftOR0MNyv8%3D"
+  },
+  "03_tender_complete.pdf": {
+    "blob_name": "03_tender_complete.pdf",
+    "status": "COMPLETED",
+    "error": null,
+    "download_url": "https://storetender.blob.core.windows.net/automation-file-processed/03_tender_complete.xlsx?se=2026-08-12T14%3A15%3A09Z&sp=r&sv=2026-06-06&sr=b&sig=w0/IfanEanRZ0raC1pt/hHrllVTI7JqHXXd3MGgu8cQ%3D"
+  }
+}

@@ -1,0 +1,859 @@
+2026-08-11 19:43:24 | INFO    | __main__.main | Processing 1 tender(s): ['02_tender_complete.pdf']
+2026-08-11 19:43:24 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> ingest
+2026-08-11 19:43:24 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container?restype=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'd07e870a-958e-11f1-986a-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:24 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 409
+Response headers:
+    'Content-Length': '230'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '669ef166-901e-0071-1c9b-2918f6000000'
+    'x-ms-client-request-id': 'd07e870a-958e-11f1-986a-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerAlreadyExists'
+    'Date': 'Tue, 11 Aug 2026 14:13:24 GMT'
+2026-08-11 19:43:24 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container/02_tender_complete.pdf'
+Request method: 'HEAD'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'd0fe15d3-958e-11f1-bf94-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:24 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 404
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '669ef187-901e-0071-339b-2918f6000000'
+    'x-ms-client-request-id': 'd0fe15d3-958e-11f1-bf94-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-is-soft-deleted': 'REDACTED'
+    'x-ms-error-code': 'BlobNotFound'
+    'Date': 'Tue, 11 Aug 2026 14:13:24 GMT'
+2026-08-11 19:43:24 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container/02_tender_complete.pdf'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '1919092'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'd10570f9-958e-11f1-a257-94c6917cf59f'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-08-11 19:43:25 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Content-MD5': 'REDACTED'
+    'Last-Modified': 'Tue, 11 Aug 2026 14:13:25 GMT'
+    'ETag': '"0x8DEF7B2B581CE45"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '669ef1a5-901e-0071-4d9b-2918f6000000'
+    'x-ms-client-request-id': 'd10570f9-958e-11f1-a257-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:13:24 GMT'
+2026-08-11 19:43:25 | INFO    | app.services.blob_storage.upload_file | Uploaded 02_tender_complete.pdf
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> ocr
+2026-08-11 19:43:25 | INFO    | app.pipeline.stages.stage_ocr | [02_tender_complete.pdf] OCR data found in cache and using it: C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\cache\02_tender_complete.ocr.json
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> extract_index
+2026-08-11 19:43:25 | INFO    | app.pipeline.stages.stage_extract_index_data | [02_tender_complete.pdf] Using extracted 'index' data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\cache\02_tender_complete.index.json
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> extract_nit
+2026-08-11 19:43:25 | INFO    | app.pipeline.stages.stage_extract_nit_data | [02_tender_complete.pdf] Using Extracted NIT data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\cache\02_tender_complete.extracted_nit.json
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> validate_nit
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> export_nit
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> extract_misc
+2026-08-11 19:43:25 | INFO    | app.pipeline.stages.stage_extract_tender_misc_data | [02_tender_complete.pdf] Using extracted data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\cache\02_tender_complete.misc.json
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> export_misc
+2026-08-11 19:43:25 | INFO    | app.services.tender_export_excel.export_extraction_to_excel | Wrote tender extraction workbook to C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\output\02_tender_complete.misc.xlsx
+2026-08-11 19:43:25 | INFO    | app.pipeline.stages.stage_export_tender_misc_data | [02_tender_complete.pdf] Wrote misc data to -> C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\output\02_tender_complete.misc.xlsx
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> consolidate_all_excels
+2026-08-11 19:43:25 | INFO    | app.pipeline.stages.stage_consolidate_all_excels | [02_tender_complete.pdf] Wrote consolidated excel -> C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\output\02_tender_complete.xlsx
+2026-08-11 19:43:25 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> publish
+2026-08-11 19:43:25 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-file-processed?restype=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'd18c4f18-958e-11f1-a5f2-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:26 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 409
+Response headers:
+    'Content-Length': '230'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'd2a8e8a8-601e-0028-3c9b-299f75000000'
+    'x-ms-client-request-id': 'd18c4f18-958e-11f1-a5f2-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerAlreadyExists'
+    'Date': 'Tue, 11 Aug 2026 14:13:26 GMT'
+2026-08-11 19:43:26 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-file-processed/02_tender_complete.xlsx'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '13038'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'd20bc7ea-958e-11f1-8b17-94c6917cf59f'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-08-11 19:43:26 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Content-MD5': 'REDACTED'
+    'Last-Modified': 'Tue, 11 Aug 2026 14:13:26 GMT'
+    'ETag': '"0x8DEF7B2B650A1C5"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'd2a8e8e5-601e-0028-6a9b-299f75000000'
+    'x-ms-client-request-id': 'd20bc7ea-958e-11f1-8b17-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:13:26 GMT'
+2026-08-11 19:43:26 | INFO    | app.services.blob_storage.upload_file | Uploaded 02_tender_complete.xlsx
+2026-08-11 19:43:26 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container/02_tender_complete.pdf'
+Request method: 'HEAD'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'd2143411-958e-11f1-b1d9-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:26 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Content-Length': '1919092'
+    'Content-Type': 'application/octet-stream'
+    'Content-MD5': 'REDACTED'
+    'Last-Modified': 'Tue, 11 Aug 2026 14:13:25 GMT'
+    'Accept-Ranges': 'REDACTED'
+    'ETag': '"0x8DEF7B2B581CE45"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'd2a8e8f9-601e-0028-7c9b-299f75000000'
+    'x-ms-client-request-id': 'd2143411-958e-11f1-b1d9-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-creation-time': 'REDACTED'
+    'x-ms-lease-status': 'REDACTED'
+    'x-ms-lease-state': 'REDACTED'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-server-encrypted': 'REDACTED'
+    'x-ms-access-tier': 'REDACTED'
+    'x-ms-access-tier-inferred': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:13:26 GMT'
+2026-08-11 19:43:26 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-file-processed/02_tender_complete.pdf'
+Request method: 'PUT'
+Request headers:
+    'x-ms-copy-source': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'd21aff37-958e-11f1-a124-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:27 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 202
+Response headers:
+    'Content-Length': '0'
+    'Last-Modified': 'Tue, 11 Aug 2026 14:13:27 GMT'
+    'ETag': '"0x8DEF7B2B6946DC4"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'd2a8e918-601e-0028-159b-299f75000000'
+    'x-ms-client-request-id': 'd21aff37-958e-11f1-a124-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-copy-id': 'REDACTED'
+    'x-ms-copy-status': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:13:27 GMT'
+2026-08-11 19:43:27 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container/02_tender_complete.pdf'
+Request method: 'DELETE'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'd257e7d4-958e-11f1-ac37-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:27 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 202
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'd2a8e9fc-601e-0028-519b-299f75000000'
+    'x-ms-client-request-id': 'd257e7d4-958e-11f1-ac37-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-delete-type-permanent': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:13:27 GMT'
+2026-08-11 19:43:27 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] -> notify
+2026-08-11 19:43:27 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails:send?api-version=2025-09-01'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '773'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': 'd267c6a4-958e-11f1-8c2f-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-08-11 19:43:28 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 202
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:28 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'Operation-Location': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+2026-08-11 19:43:28 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/9528d50e-c572-4a11-8450-1abaa5f0ecc2?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'd267c6a4-958e-11f1-8c2f-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:28 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:28 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:43:31 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/9528d50e-c572-4a11-8450-1abaa5f0ecc2?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'd267c6a4-958e-11f1-8c2f-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:31 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:31 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:43:34 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/9528d50e-c572-4a11-8450-1abaa5f0ecc2?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'd267c6a4-958e-11f1-8c2f-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:34 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:35 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '79'
+    'Connection': 'keep-alive'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:43:34 | INFO    | app.services.email_service.send_email_through_azure | Email sent to info@comfortsolutionsgroup.in via Azure Communication Services.
+2026-08-11 19:43:34 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails:send?api-version=2025-09-01'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '767'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': 'd6f98b85-958e-11f1-bc1a-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-08-11 19:43:35 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 202
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:35 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'Operation-Location': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+2026-08-11 19:43:35 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/166ceba9-fc62-466f-9c5a-8cd0afa17204?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'd6f98b85-958e-11f1-bc1a-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:36 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:36 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:43:39 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/166ceba9-fc62-466f-9c5a-8cd0afa17204?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'd6f98b85-958e-11f1-bc1a-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:39 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:39 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:43:42 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/166ceba9-fc62-466f-9c5a-8cd0afa17204?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'd6f98b85-958e-11f1-bc1a-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:42 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:42 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:43:45 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/166ceba9-fc62-466f-9c5a-8cd0afa17204?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'd6f98b85-958e-11f1-bc1a-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:43:45 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:13:45 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '79'
+    'Connection': 'keep-alive'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:43:45 | INFO    | app.services.email_service.send_email_through_azure | Email sent to ash322.ash422@gmail.com via Azure Communication Services.
+2026-08-11 19:43:45 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_complete.pdf] pipeline completed -> https://storetender.blob.core.windows.net/automation-file-processed/02_tender_complete.xlsx?se=2026-08-12T14%3A13%3A27Z&sp=r&sv=2026-06-06&sr=b&sig=QppgzuSgsUs4q/2hFxdkuGPQKg4k3mH4dftOR0MNyv8%3D
+2026-08-11 19:43:45 | INFO    | __main__.main | Done: 1 succeeded, 0 failed.
+2026-08-11 19:45:05 | INFO    | __main__.main | Processing 1 tender(s): ['03_tender_complete.pdf']
+2026-08-11 19:45:05 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> ingest
+2026-08-11 19:45:05 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container?restype=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '0cb7d84b-958f-11f1-90e5-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:06 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 409
+Response headers:
+    'Content-Length': '230'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '0f45e634-b01e-003b-029b-29bb79000000'
+    'x-ms-client-request-id': '0cb7d84b-958f-11f1-90e5-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerAlreadyExists'
+    'Date': 'Tue, 11 Aug 2026 14:15:05 GMT'
+2026-08-11 19:45:06 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container/03_tender_complete.pdf'
+Request method: 'HEAD'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '0d670e7e-958f-11f1-9967-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:06 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 404
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '0f45e6c6-b01e-003b-7e9b-29bb79000000'
+    'x-ms-client-request-id': '0d670e7e-958f-11f1-9967-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-is-soft-deleted': 'REDACTED'
+    'x-ms-error-code': 'BlobNotFound'
+    'Date': 'Tue, 11 Aug 2026 14:15:05 GMT'
+2026-08-11 19:45:06 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container/03_tender_complete.pdf'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '773972'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '0d753f68-958f-11f1-bff8-94c6917cf59f'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-08-11 19:45:06 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Content-MD5': 'REDACTED'
+    'Last-Modified': 'Tue, 11 Aug 2026 14:15:06 GMT'
+    'ETag': '"0x8DEF7B2F1E2BA24"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '0f45e6f2-b01e-003b-259b-29bb79000000'
+    'x-ms-client-request-id': '0d753f68-958f-11f1-bff8-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:15:05 GMT'
+2026-08-11 19:45:06 | INFO    | app.services.blob_storage.upload_file | Uploaded 03_tender_complete.pdf
+2026-08-11 19:45:06 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> ocr
+2026-08-11 19:45:06 | INFO    | app.pipeline.stages.stage_ocr | [03_tender_complete.pdf] OCR data found in cache and using it: C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\cache\03_tender_complete.ocr.json
+2026-08-11 19:45:06 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> extract_index
+2026-08-11 19:45:06 | INFO    | app.pipeline.stages.stage_extract_index_data | [03_tender_complete.pdf] Using extracted 'index' data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\cache\03_tender_complete.index.json
+2026-08-11 19:45:06 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> extract_nit
+2026-08-11 19:45:06 | INFO    | app.pipeline.stages.stage_extract_nit_data | [03_tender_complete.pdf] Using Extracted NIT data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\cache\03_tender_complete.extracted_nit.json
+2026-08-11 19:45:06 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> validate_nit
+2026-08-11 19:45:06 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> export_nit
+2026-08-11 19:45:06 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> extract_misc
+2026-08-11 19:45:06 | INFO    | app.pipeline.stages.stage_extract_tender_misc_data | [03_tender_complete.pdf] Using extracted data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\cache\03_tender_complete.misc.json
+2026-08-11 19:45:06 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> export_misc
+2026-08-11 19:45:07 | INFO    | app.services.tender_export_excel.export_extraction_to_excel | Wrote tender extraction workbook to C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\output\03_tender_complete.misc.xlsx
+2026-08-11 19:45:07 | INFO    | app.pipeline.stages.stage_export_tender_misc_data | [03_tender_complete.pdf] Wrote misc data to -> C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\output\03_tender_complete.misc.xlsx
+2026-08-11 19:45:07 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> consolidate_all_excels
+2026-08-11 19:45:07 | INFO    | app.pipeline.stages.stage_consolidate_all_excels | [03_tender_complete.pdf] Wrote consolidated excel -> C:\Users\hi\Desktop\projects\python_projects\tutorial\play_langchain_llamaindex_langgraph\TenderExtractor\output\03_tender_complete.xlsx
+2026-08-11 19:45:07 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> publish
+2026-08-11 19:45:07 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-file-processed?restype=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '0e57f997-958f-11f1-839b-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 409
+Response headers:
+    'Content-Length': '230'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '80577225-201e-0006-4c9b-29cd62000000'
+    'x-ms-client-request-id': '0e57f997-958f-11f1-839b-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerAlreadyExists'
+    'Date': 'Tue, 11 Aug 2026 14:15:08 GMT'
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-file-processed/03_tender_complete.xlsx'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '26101'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '0f21c33c-958f-11f1-be83-94c6917cf59f'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Content-MD5': 'REDACTED'
+    'Last-Modified': 'Tue, 11 Aug 2026 14:15:09 GMT'
+    'ETag': '"0x8DEF7B2F36C72B4"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '80577259-201e-0006-7c9b-29cd62000000'
+    'x-ms-client-request-id': '0f21c33c-958f-11f1-be83-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:15:08 GMT'
+2026-08-11 19:45:09 | INFO    | app.services.blob_storage.upload_file | Uploaded 03_tender_complete.xlsx
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container/03_tender_complete.pdf'
+Request method: 'HEAD'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '0f483751-958f-11f1-87c5-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Content-Length': '773972'
+    'Content-Type': 'application/octet-stream'
+    'Content-MD5': 'REDACTED'
+    'Last-Modified': 'Tue, 11 Aug 2026 14:15:06 GMT'
+    'Accept-Ranges': 'REDACTED'
+    'ETag': '"0x8DEF7B2F1E2BA24"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '8057731b-201e-0006-2b9b-29cd62000000'
+    'x-ms-client-request-id': '0f483751-958f-11f1-87c5-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-creation-time': 'REDACTED'
+    'x-ms-lease-status': 'REDACTED'
+    'x-ms-lease-state': 'REDACTED'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-server-encrypted': 'REDACTED'
+    'x-ms-access-tier': 'REDACTED'
+    'x-ms-access-tier-inferred': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:15:09 GMT'
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-file-processed/03_tender_complete.pdf'
+Request method: 'PUT'
+Request headers:
+    'x-ms-copy-source': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '0f5ca9d9-958f-11f1-9e6e-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 202
+Response headers:
+    'Content-Length': '0'
+    'Last-Modified': 'Tue, 11 Aug 2026 14:15:09 GMT'
+    'ETag': '"0x8DEF7B2F3A23A7A"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '80577350-201e-0006-5a9b-29cd62000000'
+    'x-ms-client-request-id': '0f5ca9d9-958f-11f1-9e6e-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-copy-id': 'REDACTED'
+    'x-ms-copy-status': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:15:09 GMT'
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://storetender.blob.core.windows.net/automation-container/03_tender_complete.pdf'
+Request method: 'DELETE'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.30.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '0f6d4bd8-958f-11f1-8285-94c6917cf59f'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 202
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '805773c2-201e-0006-439b-29cd62000000'
+    'x-ms-client-request-id': '0f6d4bd8-958f-11f1-8285-94c6917cf59f'
+    'x-ms-version': 'REDACTED'
+    'x-ms-delete-type-permanent': 'REDACTED'
+    'Date': 'Tue, 11 Aug 2026 14:15:09 GMT'
+2026-08-11 19:45:09 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] -> notify
+2026-08-11 19:45:09 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails:send?api-version=2025-09-01'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '773'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '0f84f2a8-958f-11f1-9771-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-08-11 19:45:11 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 202
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:15:11 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'Operation-Location': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+2026-08-11 19:45:11 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/8d83a892-0f3d-4256-a97e-f7fbc794870c?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': '0f84f2a8-958f-11f1-9771-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:11 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:15:11 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:45:14 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/8d83a892-0f3d-4256-a97e-f7fbc794870c?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': '0f84f2a8-958f-11f1-9771-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:14 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:15:15 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '79'
+    'Connection': 'keep-alive'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:45:14 | INFO    | app.services.email_service.send_email_through_azure | Email sent to info@comfortsolutionsgroup.in via Azure Communication Services.
+2026-08-11 19:45:14 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails:send?api-version=2025-09-01'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '767'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '129414fb-958f-11f1-bc63-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-08-11 19:45:16 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 202
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:15:16 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'Operation-Location': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+2026-08-11 19:45:16 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/bf26abe0-110b-4996-a259-2b05324272a5?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': '129414fb-958f-11f1-bc63-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:16 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:15:16 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:45:19 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/bf26abe0-110b-4996-a259-2b05324272a5?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': '129414fb-958f-11f1-bc63-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:19 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:15:19 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:45:22 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/bf26abe0-110b-4996-a259-2b05324272a5?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': '129414fb-958f-11f1-bc63-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:22 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:15:22 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '77'
+    'Connection': 'keep-alive'
+    'Retry-After': '3'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:45:25 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_request | Request URL: 'https://inst-communication.india.communication.azure.com/emails/operations/bf26abe0-110b-4996-a259-2b05324272a5?api-version=2025-09-01'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': '129414fb-958f-11f1-bc63-94c6917cf59f'
+    'User-Agent': 'azsdk-python-communication-email/1.1.0 Python/3.11.9 (Windows-10-10.0.22621-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-content-sha256': 'REDACTED'
+    'x-ms-return-client-request-id': 'true'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-08-11 19:45:25 | INFO    | azure.core.pipeline.policies.http_logging_policy.on_response | Response status: 200
+Response headers:
+    'Date': 'Tue, 11 Aug 2026 14:15:25 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '79'
+    'Connection': 'keep-alive'
+    'MS-CV': 'REDACTED'
+    'api-supported-versions': 'REDACTED'
+    'x-azure-ref': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'Accept-Ranges': 'REDACTED'
+2026-08-11 19:45:25 | INFO    | app.services.email_service.send_email_through_azure | Email sent to ash322.ash422@gmail.com via Azure Communication Services.
+2026-08-11 19:45:25 | INFO    | app.pipeline.runner.run_pipeline | [03_tender_complete.pdf] pipeline completed -> https://storetender.blob.core.windows.net/automation-file-processed/03_tender_complete.xlsx?se=2026-08-12T14%3A15%3A09Z&sp=r&sv=2026-06-06&sr=b&sig=w0/IfanEanRZ0raC1pt/hHrllVTI7JqHXXd3MGgu8cQ%3D
+2026-08-11 19:45:25 | INFO    | __main__.main | Done: 1 succeeded, 0 failed.
+2026-08-12 10:38:19 | INFO    | app.api.main.create_tender | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) queued for processing
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> ingest
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> ocr
+2026-08-12 10:38:19 | INFO    | app.pipeline.stages.stage_ocr | [02_tender_mini_version.pdf] OCR data found in cache and using it: C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\cache\02_tender_mini_version.ocr.json
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> extract_index
+2026-08-12 10:38:19 | INFO    | app.pipeline.stages.stage_extract_index_data | [02_tender_mini_version.pdf] Using extracted 'index' data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\cache\02_tender_mini_version.index.json
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> extract_nit
+2026-08-12 10:38:19 | INFO    | app.pipeline.stages.stage_extract_nit_data | [02_tender_mini_version.pdf] Using Extracted NIT data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\cache\02_tender_mini_version.extracted_nit.json
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> validate_nit
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> export_nit
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> extract_misc
+2026-08-12 10:38:19 | INFO    | app.pipeline.stages.stage_extract_tender_misc_data | [02_tender_mini_version.pdf] Using extracted data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\cache\02_tender_mini_version.misc.json
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> export_misc
+2026-08-12 10:38:19 | INFO    | app.services.tender_export_excel.export_extraction_to_excel | Wrote tender extraction workbook to C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.misc.xlsx
+2026-08-12 10:38:19 | INFO    | app.pipeline.stages.stage_export_tender_misc_data | [02_tender_mini_version.pdf] Wrote misc data to -> C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.misc.xlsx
+2026-08-12 10:38:19 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> consolidate_all_excels
+2026-08-12 10:38:20 | INFO    | app.pipeline.stages.stage_consolidate_all_excels | [02_tender_mini_version.pdf] Wrote consolidated excel -> C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.xlsx
+2026-08-12 10:38:20 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> publish
+2026-08-12 10:38:20 | INFO    | app.pipeline.stages.stage_publish | [02_tender_mini_version.pdf] Blob Storage not configured - output kept locally at C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.xlsx
+2026-08-12 10:38:20 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) -> notify
+2026-08-12 10:38:20 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 4c9351a2-9209-46fc-a67f-b5e39a6b1314) pipeline completed at 2026-08-12 05:08:20 -> C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.xlsx (tokens used: 0)
+2026-08-12 14:23:40 | INFO    | app.api.main.create_tender | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) queued for processing
+2026-08-12 14:23:40 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> ingest
+2026-08-12 14:23:40 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> ocr
+2026-08-12 14:23:40 | INFO    | app.pipeline.stages.stage_ocr | [02_tender_mini_version.pdf] OCR data found in cache and using it: C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\cache\02_tender_mini_version.ocr.json
+2026-08-12 14:23:40 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> extract_index
+2026-08-12 14:23:40 | INFO    | app.pipeline.stages.stage_extract_index_data | [02_tender_mini_version.pdf] Using extracted 'index' data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\cache\02_tender_mini_version.index.json
+2026-08-12 14:23:40 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> extract_nit
+2026-08-12 14:23:40 | INFO    | app.pipeline.stages.stage_extract_nit_data | [02_tender_mini_version.pdf] Using Extracted NIT data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\cache\02_tender_mini_version.extracted_nit.json
+2026-08-12 14:23:40 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> validate_nit
+2026-08-12 14:23:40 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> export_nit
+2026-08-12 14:23:41 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> extract_misc
+2026-08-12 14:23:41 | INFO    | app.pipeline.stages.stage_extract_tender_misc_data | [02_tender_mini_version.pdf] Using extracted data found in cache: C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\cache\02_tender_mini_version.misc.json
+2026-08-12 14:23:41 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> export_misc
+2026-08-12 14:23:41 | INFO    | app.services.tender_export_excel.export_extraction_to_excel | Wrote tender extraction workbook to C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.misc.xlsx
+2026-08-12 14:23:41 | INFO    | app.pipeline.stages.stage_export_tender_misc_data | [02_tender_mini_version.pdf] Wrote misc data to -> C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.misc.xlsx
+2026-08-12 14:23:41 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> consolidate_all_excels
+2026-08-12 14:23:41 | INFO    | app.pipeline.stages.stage_consolidate_all_excels | [02_tender_mini_version.pdf] Wrote consolidated excel -> C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.xlsx
+2026-08-12 14:23:41 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> publish
+2026-08-12 14:23:41 | INFO    | app.pipeline.stages.stage_publish | [02_tender_mini_version.pdf] Blob Storage not configured - output kept locally at C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.xlsx
+2026-08-12 14:23:41 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) -> notify
+2026-08-12 14:23:41 | INFO    | app.pipeline.runner.run_pipeline | [02_tender_mini_version.pdf] (job 356e8ea0-1143-4ef3-9845-ad7124333652) pipeline completed at 2026-08-12 08:53:41 -> C:\Users\hi\Desktop\projects\python_projects\tutorial\tut_youtube\AI_tools\Claude\claude_code\TenderExtractor\backend\output\02_tender_mini_version.xlsx (tokens used: 0)
