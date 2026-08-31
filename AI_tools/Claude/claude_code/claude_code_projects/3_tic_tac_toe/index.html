@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cube Tac Toe — Rubik's Cube × Tic-Tac-Toe</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --panel-border: #334155;
+    --accent: #38bdf8;
+    --accent-dark: #0ea5e9;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --success: #4ade80;
+    --error: #f87171;
+    --x-color: #38bdf8;
+    --o-color: #fb923c;
+    --cubie: clamp(30px, 8vw, 56px);
+    --gap: 6px;
+    --unit: calc(var(--cubie) + var(--gap));
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 60px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 24px;
+    max-width: 640px;
+  }
+
+  header h1 {
+    margin: 0 0 8px;
+    font-size: 2rem;
+  }
+
+  header h1 span {
+    color: var(--accent);
+  }
+
+  header p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .layout {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1100px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- Cube scene ---------- */
+
+  .scene-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .scene {
+    width: min(78vw, 340px);
+    height: min(78vw, 340px);
+    perspective: 1000px;
+    touch-action: none;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .scene:active { cursor: grabbing; }
+
+  .rig {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(-30deg);
+  }
+
+  .cube, .pivot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+  }
+
+  .cubie {
+    position: absolute;
+    top: calc(var(--cubie) / -2);
+    left: calc(var(--cubie) / -2);
+    width: var(--cubie);
+    height: var(--cubie);
+    transform-style: preserve-3d;
+  }
+
+  .face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--cubie);
+    height: var(--cubie);
+    background: #050505;
+    border-radius: 5px;
+    backface-visibility: hidden;
+  }
+
+  .face-front  { transform: translateZ(calc(var(--cubie) / 2)); }
+  .face-back   { transform: rotateY(180deg) translateZ(calc(var(--cubie) / 2)); }
+  .face-right  { transform: rotateY(90deg) translateZ(calc(var(--cubie) / 2)); }
+  .face-left   { transform: rotateY(-90deg) translateZ(calc(var(--cubie) / 2)); }
+  .face-top    { transform: rotateX(90deg) translateZ(calc(var(--cubie) / 2)); }
+  .face-bottom { transform: rotateX(-90deg) translateZ(calc(var(--cubie) / 2)); }
+
+  .sticker {
+    position: absolute;
+    inset: 4px;
+    background: #f5f5f4;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: calc(var(--cubie) * 0.5);
+    line-height: 1;
+    cursor: default;
+    transition: background 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .can-place .sticker.empty {
+    cursor: pointer;
+  }
+
+  .can-place .sticker.empty:hover {
+    background: #ffffff;
+    box-shadow: 0 0 0 2px var(--accent) inset;
+  }
+
+  .sticker.mark-x { color: var(--x-color); }
+  .sticker.mark-o { color: var(--o-color); }
+
+  .drag-hint {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  /* ---------- Side panel ---------- */
+
+  .panel {
+    width: 100%;
+    max-width: 340px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .status {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+
+  .badge-x { background: rgba(56, 189, 248, 0.15); color: var(--x-color); border: 1px solid rgba(56, 189, 248, 0.4); }
+  .badge-o { background: rgba(251, 146, 60, 0.15); color: var(--o-color); border: 1px solid rgba(251, 146, 60, 0.4); }
+
+  #status-phase {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    min-height: 1.2em;
+  }
+
+  .section-title {
+    margin: 0;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+  }
+
+  .moves-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .move-btn {
+    padding: 10px 6px;
+    border-radius: 10px;
+    border: 1px solid var(--panel-border);
+    background: #16202f;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .move-btn:active:not(:disabled) { transform: scale(0.97); }
+
+  .move-btn:not(:disabled):hover {
+    border-color: var(--accent);
+    background: #1e2b40;
+  }
+
+  .move-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  button.secondary {
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--panel-border);
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  button.secondary:hover {
+    color: var(--text);
+    border-color: var(--text-dim);
+  }
+
+  /* ---------- Game over overlay ---------- */
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 15, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 16px;
+  }
+
+  .overlay.hidden { display: none; }
+
+  .overlay-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+    max-width: 360px;
+    width: 100%;
+  }
+
+  .overlay-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+  }
+
+  .overlay-card p {
+    margin: 0 0 20px;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+
+  .overlay-card button {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: #04202e;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+  }
+
+  .overlay-card button:hover { filter: brightness(1.1); }
+
+  footer {
+    margin-top: 40px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Cube <span>Tac</span> Toe</h1>
+  <p>Place your mark on a sticker, then make one standard cube move. Get 3 in a row on any single face to win. Drag the cube to inspect every side.</p>
+</header>
+
+<div class="layout">
+  <div class="scene-wrap">
+    <div class="scene" id="scene">
+      <div class="rig" id="rig">
+        <div class="cube" id="cube"></div>
+        <div class="pivot" id="pivot"></div>
+      </div>
+    </div>
+    <div class="drag-hint">Drag to rotate &amp; inspect the cube</div>
+  </div>
+
+  <div class="panel">
+    <div class="status">
+      <div class="badge badge-x" id="status-player">Player X</div>
+      <div id="status-phase">Place your mark on any empty sticker.</div>
+    </div>
+
+    <div>
+      <p class="section-title">Standard move</p>
+      <div class="moves-grid" id="moves-grid"></div>
+    </div>
+
+    <button class="secondary" id="new-game-btn">New Game</button>
+  </div>
+</div>
+
+<footer>All logic runs locally in your browser. No files, no server.</footer>
+
+<div class="overlay hidden" id="overlay">
+  <div class="overlay-card">
+    <h2 id="overlay-title">Game Over</h2>
+    <p id="overlay-message"></p>
+    <button id="overlay-new-game-btn">New Game</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===================== Cube model constants ===================== */
+
+  const FACES = ['U', 'D', 'F', 'B', 'L', 'R'];
+  const FACE_BASE = { U: 0, D: 9, F: 18, B: 27, L: 36, R: 45 };
+  const FACE_TO_LOCALCLASS = { U: 'face-top', D: 'face-bottom', F: 'face-front', B: 'face-back', R: 'face-right', L: 'face-left' };
+
+  const FACE_NORMAL = { U: [0, 1, 0], D: [0, -1, 0], F: [0, 0, 1], B: [0, 0, -1], L: [-1, 0, 0], R: [1, 0, 0] };
+  const FACE_RIGHT  = { U: [1, 0, 0], D: [-1, 0, 0], F: [1, 0, 0], B: [-1, 0, 0], R: [0, 0, -1], L: [0, 0, 1] };
+  const FACE_UP     = { U: [0, 0, -1], D: [0, 0, -1], F: [0, 1, 0], B: [0, 1, 0], R: [0, 1, 0], L: [0, 1, 0] };
+
+  function idx(face, row, col) {
+    return FACE_BASE[face] + row * 3 + col;
+  }
+
+  function cubieCoord(face, row, col) {
+    const n = FACE_NORMAL[face], rt = FACE_RIGHT[face], up = FACE_UP[face];
+    const cf = col - 1, uf = 1 - row;
+    return [
+      n[0] + rt[0] * cf + up[0] * uf,
+      n[1] + rt[1] * cf + up[1] * uf,
+      n[2] + rt[2] * cf + up[2] * uf,
+    ];
+  }
+
+  /* ===================== Move permutation tables ===================== */
+  // Each cycle [a,b,c,d] means: new value at b <- old a, new c <- old b,
+  // new d <- old c, new a <- old d (a 4-way cyclic rotation).
+
+  function I(f, r, c) { return idx(f, r, c); }
+
+  const CYCLES = {
+    U: [
+      [I('U',0,0), I('U',2,0), I('U',2,2), I('U',0,2)],
+      [I('U',0,1), I('U',1,0), I('U',2,1), I('U',1,2)],
+      [I('F',0,0), I('R',0,0), I('B',0,0), I('L',0,0)],
+      [I('F',0,1), I('R',0,1), I('B',0,1), I('L',0,1)],
+      [I('F',0,2), I('R',0,2), I('B',0,2), I('L',0,2)],
+    ],
+    "U'": [
+      [I('U',0,0), I('U',0,2), I('U',2,2), I('U',2,0)],
+      [I('U',0,1), I('U',1,2), I('U',2,1), I('U',1,0)],
+      [I('F',0,0), I('L',0,0), I('B',0,0), I('R',0,0)],
+      [I('F',0,1), I('L',0,1), I('B',0,1), I('R',0,1)],
+      [I('F',0,2), I('L',0,2), I('B',0,2), I('R',0,2)],
+    ],
+    D: [
+      [I('D',0,0), I('D',2,0), I('D',2,2), I('D',0,2)],
+      [I('D',0,1), I('D',1,0), I('D',2,1), I('D',1,2)],
+      [I('F',2,0), I('L',2,0), I('B',2,0), I('R',2,0)],
+      [I('F',2,1), I('L',2,1), I('B',2,1), I('R',2,1)],
+      [I('F',2,2), I('L',2,2), I('B',2,2), I('R',2,2)],
+    ],
+    "D'": [
+      [I('D',0,0), I('D',0,2), I('D',2,2), I('D',2,0)],
+      [I('D',0,1), I('D',1,2), I('D',2,1), I('D',1,0)],
+      [I('F',2,0), I('R',2,0), I('B',2,0), I('L',2,0)],
+      [I('F',2,1), I('R',2,1), I('B',2,1), I('L',2,1)],
+      [I('F',2,2), I('R',2,2), I('B',2,2), I('L',2,2)],
+    ],
+    F: [
+      [I('U',2,0), I('L',2,2), I('D',2,0), I('R',0,0)],
+      [I('U',2,1), I('L',1,2), I('D',2,1), I('R',1,0)],
+      [I('U',2,2), I('L',0,2), I('D',2,2), I('R',2,0)],
+      [I('F',0,0), I('F',2,0), I('F',2,2), I('F',0,2)],
+      [I('F',0,1), I('F',1,0), I('F',2,1), I('F',1,2)],
+    ],
+    "F'": [
+      [I('U',2,0), I('R',0,0), I('D',2,0), I('L',2,2)],
+      [I('U',2,1), I('R',1,0), I('D',2,1), I('L',1,2)],
+      [I('U',2,2), I('R',2,0), I('D',2,2), I('L',0,2)],
+      [I('F',0,0), I('F',0,2), I('F',2,2), I('F',2,0)],
+      [I('F',0,1), I('F',1,2), I('F',2,1), I('F',1,0)],
+    ],
+    B: [
+      [I('U',0,0), I('R',0,2), I('D',0,0), I('L',2,0)],
+      [I('U',0,1), I('R',1,2), I('D',0,1), I('L',1,0)],
+      [I('U',0,2), I('R',2,2), I('D',0,2), I('L',0,0)],
+      [I('B',0,0), I('B',2,0), I('B',2,2), I('B',0,2)],
+      [I('B',0,1), I('B',1,0), I('B',2,1), I('B',1,2)],
+    ],
+    "B'": [
+      [I('U',0,0), I('L',2,0), I('D',0,0), I('R',0,2)],
+      [I('U',0,1), I('L',1,0), I('D',0,1), I('R',1,2)],
+      [I('U',0,2), I('L',0,0), I('D',0,2), I('R',2,2)],
+      [I('B',0,0), I('B',0,2), I('B',2,2), I('B',2,0)],
+      [I('B',0,1), I('B',1,2), I('B',2,1), I('B',1,0)],
+    ],
+    R: [
+      [I('U',0,2), I('F',0,2), I('D',2,0), I('B',0,0)],
+      [I('U',1,2), I('F',1,2), I('D',1,0), I('B',1,0)],
+      [I('U',2,2), I('F',2,2), I('D',0,0), I('B',2,0)],
+      [I('R',0,0), I('R',2,0), I('R',2,2), I('R',0,2)],
+      [I('R',0,1), I('R',1,0), I('R',2,1), I('R',1,2)],
+    ],
+    "R'": [
+      [I('U',0,2), I('B',0,0), I('D',2,0), I('F',0,2)],
+      [I('U',1,2), I('B',1,0), I('D',1,0), I('F',1,2)],
+      [I('U',2,2), I('B',2,0), I('D',0,0), I('F',2,2)],
+      [I('R',0,0), I('R',0,2), I('R',2,2), I('R',2,0)],
+      [I('R',0,1), I('R',1,2), I('R',2,1), I('R',1,0)],
+    ],
+    L: [
+      [I('U',0,0), I('B',2,2), I('D',2,2), I('F',0,0)],
+      [I('U',1,0), I('B',1,2), I('D',1,2), I('F',1,0)],
+      [I('U',2,0), I('B',0,2), I('D',0,2), I('F',2,0)],
+      [I('L',0,0), I('L',2,0), I('L',2,2), I('L',0,2)],
+      [I('L',0,1), I('L',1,0), I('L',2,1), I('L',1,2)],
+    ],
+    "L'": [
+      [I('U',0,0), I('F',0,0), I('D',2,2), I('B',2,2)],
+      [I('U',1,0), I('F',1,0), I('D',1,2), I('B',1,2)],
+      [I('U',2,0), I('F',2,0), I('D',0,2), I('B',0,2)],
+      [I('L',0,0), I('L',0,2), I('L',2,2), I('L',2,0)],
+      [I('L',0,1), I('L',1,2), I('L',2,1), I('L',1,0)],
+    ],
+  };
+
+  function cyclesToPerm(cycles) {
+    // perm[i] = index whose old value now feeds slot i
+    const perm = Array.from({ length: 54 }, (_, i) => i);
+    for (const c of cycles) {
+      for (let k = 0; k < c.length; k++) {
+        perm[c[k]] = c[(k - 1 + c.length) % c.length];
+      }
+    }
+    return perm;
+  }
+
+  const MOVE_NAMES = ['U', "U'", 'D', "D'", 'F', "F'", 'B', "B'", 'R', "R'", 'L', "L'"];
+  const MOVES = {};
+  MOVE_NAMES.forEach(name => { MOVES[name] = cyclesToPerm(CYCLES[name]); });
+
+  const MOVE_GEOM = {
+    U:  { axis: 'y', layer: 1,  deg: -90 },
+    "U'": { axis: 'y', layer: 1,  deg: 90 },
+    D:  { axis: 'y', layer: -1, deg: 90 },
+    "D'": { axis: 'y', layer: -1, deg: -90 },
+    F:  { axis: 'z', layer: 1,  deg: -90 },
+    "F'": { axis: 'z', layer: 1,  deg: 90 },
+    B:  { axis: 'z', layer: -1, deg: 90 },
+    "B'": { axis: 'z', layer: -1, deg: -90 },
+    R:  { axis: 'x', layer: 1,  deg: -90 },
+    "R'": { axis: 'x', layer: 1,  deg: 90 },
+    L:  { axis: 'x', layer: -1, deg: 90 },
+    "L'": { axis: 'x', layer: -1, deg: -90 },
+  };
+
+  function cssRotateFor(axis, deg) {
+    if (axis === 'x') return `rotate3d(1,0,0,${deg}deg)`;
+    if (axis === 'y') return `rotate3d(0,-1,0,${deg}deg)`; // Y negated: CSS screen space is Y-down
+    return `rotate3d(0,0,1,${deg}deg)`;
+  }
+
+  function buildLines() {
+    const lines = [];
+    for (const f of FACES) {
+      for (let r = 0; r < 3; r++) lines.push([idx(f,r,0), idx(f,r,1), idx(f,r,2)]);
+      for (let c = 0; c < 3; c++) lines.push([idx(f,0,c), idx(f,1,c), idx(f,2,c)]);
+      lines.push([idx(f,0,0), idx(f,1,1), idx(f,2,2)]);
+      lines.push([idx(f,0,2), idx(f,1,1), idx(f,2,0)]);
+    }
+    return lines;
+  }
+  const LINES = buildLines();
+
+  /* ===================== DOM construction ===================== */
+
+  const cubeEl = document.getElementById('cube');
+  const pivotEl = document.getElementById('pivot');
+  const sceneEl = document.getElementById('scene');
+  const rigEl = document.getElementById('rig');
+
+  const cubieEls = {}; // "x,y,z" -> { el, x, y, z }
+  const stickerEls = new Array(54);
+
+  function buildCube() {
+    for (let x = -1; x <= 1; x++) {
+      for (let y = -1; y <= 1; y++) {
+        for (let z = -1; z <= 1; z++) {
+          if (x === 0 && y === 0 && z === 0) continue;
+          const el = document.createElement('div');
+          el.className = 'cubie';
+          el.style.transform =
+            `translate3d(calc(var(--unit) * ${x}), calc(var(--unit) * ${-y}), calc(var(--unit) * ${z}))`;
+          cubeEl.appendChild(el);
+          cubieEls[`${x},${y},${z}`] = { el, x, y, z };
+        }
+      }
+    }
+
+    for (const face of FACES) {
+      for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < 3; col++) {
+          const [x, y, z] = cubieCoord(face, row, col);
+          const cubie = cubieEls[`${x},${y},${z}`];
+
+          const faceEl = document.createElement('div');
+          faceEl.className = `face ${FACE_TO_LOCALCLASS[face]}`;
+
+          const stickerEl = document.createElement('div');
+          stickerEl.className = 'sticker empty';
+          const stickerIdx = idx(face, row, col);
+          stickerEl.dataset.idx = String(stickerIdx);
+          stickerEl.addEventListener('click', () => onStickerClick(stickerIdx));
+
+          faceEl.appendChild(stickerEl);
+          cubie.el.appendChild(faceEl);
+          stickerEls[stickerIdx] = stickerEl;
+        }
+      }
+    }
+  }
+
+  /* ===================== Game state ===================== */
+
+  const state = new Array(54).fill(null);
+  let phase = 'PLACE'; // PLACE | MOVE | ANIMATING | GAMEOVER
+  let currentPlayer = 'X';
+  let gameOver = false;
+  const TURN_MS = 300;
+
+  function applyMove(name) {
+    const perm = MOVES[name];
+    const next = new Array(54);
+    for (let i = 0; i < 54; i++) next[i] = state[perm[i]];
+    for (let i = 0; i < 54; i++) state[i] = next[i];
+  }
+
+  function renderMarks() {
+    for (let i = 0; i < 54; i++) {
+      const el = stickerEls[i];
+      const v = state[i];
+      el.textContent = v || '';
+      el.classList.toggle('mark-x', v === 'X');
+      el.classList.toggle('mark-o', v === 'O');
+      el.classList.toggle('empty', !v);
+    }
+  }
+
+  function checkWin() {
+    const winners = new Set();
+    for (const [a, b, c] of LINES) {
+      if (state[a] && state[a] === state[b] && state[a] === state[c]) {
+        winners.add(state[a]);
+      }
+    }
+    if (winners.size === 1) return [...winners][0];
+    // A single rotation can only relocate already-placed marks, never add
+    // one, so it's rare but possible for both players' lines to complete
+    // from the same move. Per the game's rules that ambiguous case is
+    // ruled a draw rather than picking a "winner" arbitrarily.
+    if (winners.size >= 2) return 'DRAW';
+    return null;
+  }
+
+  /* ===================== Turn animation ===================== */
+
+  function animateTurn(moveName, onDone) {
+    const { axis, layer, deg } = MOVE_GEOM[moveName];
+    const affected = Object.values(cubieEls).filter(c => c[axis] === layer);
+
+    affected.forEach(c => pivotEl.appendChild(c.el));
+
+    pivotEl.style.transition = 'none';
+    pivotEl.style.transform = cssRotateFor(axis, 0);
+    void pivotEl.offsetHeight; // force reflow so the transition below actually animates
+    pivotEl.style.transition = `transform ${TURN_MS}ms ease-in-out`;
+
+    requestAnimationFrame(() => {
+      pivotEl.style.transform = cssRotateFor(axis, deg);
+    });
+
+    let finished = false;
+    function finish() {
+      if (finished) return;
+      finished = true;
+      pivotEl.removeEventListener('transitionend', onEnd);
+      clearTimeout(fallback);
+      pivotEl.style.transition = 'none';
+      affected.forEach(c => cubeEl.appendChild(c.el));
+      pivotEl.style.transform = 'none';
+      onDone();
+    }
+    function onEnd(e) {
+      if (e.target === pivotEl && e.propertyName === 'transform') finish();
+    }
+    pivotEl.addEventListener('transitionend', onEnd);
+    const fallback = setTimeout(finish, TURN_MS + 150);
+  }
+
+  /* ===================== UI wiring ===================== */
+
+  const statusPlayerEl = document.getElementById('status-player');
+  const statusPhaseEl = document.getElementById('status-phase');
+  const movesGridEl = document.getElementById('moves-grid');
+  const newGameBtn = document.getElementById('new-game-btn');
+  const overlayEl = document.getElementById('overlay');
+  const overlayTitleEl = document.getElementById('overlay-title');
+  const overlayMessageEl = document.getElementById('overlay-message');
+  const overlayNewGameBtn = document.getElementById('overlay-new-game-btn');
+
+  function buildMoveButtons() {
+    MOVE_NAMES.forEach(name => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'move-btn';
+      btn.textContent = name;
+      btn.dataset.move = name;
+      btn.addEventListener('click', () => onMoveButtonClick(name));
+      movesGridEl.appendChild(btn);
+    });
+  }
+
+  function updateUI() {
+    const buttons = movesGridEl.querySelectorAll('.move-btn');
+    buttons.forEach(btn => { btn.disabled = phase !== 'MOVE'; });
+
+    sceneEl.classList.toggle('can-place', phase === 'PLACE' && !gameOver);
+
+    statusPlayerEl.textContent = `Player ${currentPlayer}`;
+    statusPlayerEl.className = `badge ${currentPlayer === 'X' ? 'badge-x' : 'badge-o'}`;
+
+    let phaseText = '';
+    if (phase === 'PLACE') phaseText = 'Place your mark on any empty sticker.';
+    else if (phase === 'MOVE') phaseText = 'Choose a move to complete your turn.';
+    else if (phase === 'ANIMATING') phaseText = 'Turning the cube…';
+    else if (phase === 'GAMEOVER') phaseText = 'Game over.';
+    statusPhaseEl.textContent = phaseText;
+  }
+
+  function showOverlay(title, message) {
+    overlayTitleEl.textContent = title;
+    overlayMessageEl.textContent = message;
+    overlayEl.classList.remove('hidden');
+  }
+
+  function hideOverlay() {
+    overlayEl.classList.add('hidden');
+  }
+
+  function endGame(title, message) {
+    gameOver = true;
+    phase = 'GAMEOVER';
+    updateUI();
+    showOverlay(title, message);
+  }
+
+  function onStickerClick(i) {
+    if (gameOver || phase !== 'PLACE' || dragMoved > CLICK_THRESHOLD || state[i]) return;
+    state[i] = currentPlayer;
+    renderMarks();
+    phase = 'MOVE';
+    updateUI();
+  }
+
+  function onMoveButtonClick(name) {
+    if (gameOver || phase !== 'MOVE') return;
+    phase = 'ANIMATING';
+    updateUI();
+    animateTurn(name, () => {
+      applyMove(name);
+      renderMarks();
+
+      const result = checkWin();
+      if (result === 'X' || result === 'O') {
+        endGame('Game Over', `Player ${result} wins!`);
+        return;
+      }
+      if (result === 'DRAW') {
+        endGame('Draw', 'Two lines completed at the same time — it’s a draw.');
+        return;
+      }
+      if (!state.includes(null)) {
+        endGame('Draw', 'The board is full — it’s a draw.');
+        return;
+      }
+
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      phase = 'PLACE';
+      updateUI();
+    });
+  }
+
+  function resetGame() {
+    // If a turn animation was mid-flight, reclaim any cubies still parked
+    // under the pivot before clearing state, so nothing gets stranded there.
+    Array.from(pivotEl.children).forEach(c => cubeEl.appendChild(c));
+    pivotEl.style.transition = 'none';
+    pivotEl.style.transform = 'none';
+
+    for (let i = 0; i < 54; i++) state[i] = null;
+    currentPlayer = 'X';
+    phase = 'PLACE';
+    gameOver = false;
+
+    renderMarks();
+    hideOverlay();
+    updateUI();
+  }
+
+  newGameBtn.addEventListener('click', resetGame);
+  overlayNewGameBtn.addEventListener('click', resetGame);
+
+  /* ===================== Orbit drag (inspect) ===================== */
+
+  let yaw = -30, pitch = -20;
+  let dragging = false, dragStartX = 0, dragStartY = 0, dragMoved = 0;
+  const SENSITIVITY = 0.4;
+  const CLICK_THRESHOLD = 6;
+
+  function applyRig() {
+    rigEl.style.transform = `rotateX(${pitch}deg) rotateY(${yaw}deg)`;
+  }
+  applyRig();
+
+  sceneEl.addEventListener('pointerdown', (e) => {
+    if (dragging) return;
+    dragging = true;
+    dragMoved = 0;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    try { sceneEl.setPointerCapture(e.pointerId); } catch (err) { /* no-op: pointer already released */ }
+  });
+
+  sceneEl.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - dragStartX;
+    const dy = e.clientY - dragStartY;
+    dragMoved = Math.max(dragMoved, Math.hypot(dx, dy));
+    yaw += dx * SENSITIVITY;
+    pitch = Math.max(-89, Math.min(89, pitch - dy * SENSITIVITY));
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    applyRig();
+  });
+
+  function endDrag() { dragging = false; }
+  sceneEl.addEventListener('pointerup', endDrag);
+  sceneEl.addEventListener('pointercancel', endDrag);
+  sceneEl.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  /* ===================== Boot ===================== */
+
+  buildCube();
+  buildMoveButtons();
+  updateUI();
+})();
+</script>
+
+</body>
+</html>
