@@ -6,8 +6,6 @@ from langchain_core.tools import tool
 import math
 import requests
 
-import os
-
 # TOOL 1 : Calculator
 @tool
 def calculator(expression: str) -> str:
@@ -97,7 +95,10 @@ def build_agent(api_key):
         model=llm,
         tools=tools,
         system_prompt="""
-        You are a helpful AI assistant.
+        You are a helpful assistant with access to tools..
+        
+        CRITICAL: Do NOT use markdown, bolding (**), italics (*), or LaTeX formatting like \\( \\) or \\[ \\].
+        Provide responses in raw, plain text only. Example: Write '1 + 2 * 4 = 9' instead of structural equations.
 
         Use the calculator tool whenever mathematical
         calculations are required.
