@@ -10,8 +10,8 @@ API_KEY = os.getenv("OPENAI_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # Ensure this is in your .env
 
 # Initialize clients
-client = OpenAI(api_key=API_KEY)
-pc = Pinecone(api_key=PINECONE_API_KEY)
+openai_client = OpenAI(api_key=API_KEY)
+pc_client = Pinecone(api_key=PINECONE_API_KEY)
 
 # Define Index Configurations
 INDEX_NAME = "pdf-rag-index"
@@ -28,28 +28,35 @@ def read_pdf(file):
 
 
 # -------- CHUNK TEXT --------
-def chunk_text(text, size=300):
-    return [text[i : i + size] for i in range(0, len(text), size)]
+# def chunk_text(text, size=300):
+#     return [text[i : i + size] for i in range(0, len(text), size)]
+
+def chunk_text(text, size=80):
+    # Split the text by whitespace into individual words
+    words = text.split()
+    
+    # Group words into chunks of the specified size and rejoin them with spaces
+    return [" ".join(words[i : i + size]) for i in range(0, len(words), size)]
 
 
 # -------- EMBEDDINGS --------
 def embed(texts):
-    response = client.embeddings.create(model="text-embedding-3-small", input=texts)
+    response = openai_client.embeddings.create(model="text-embedding-3-small", input=texts)
     return np.array([d.embedding for d in response.data]).astype("float32")
 
 
 # -------- BUILD VECTOR DB (PINECONE) --------
 def build_index(chunks):
     # 1. Create index if it doesn't exist
-    if INDEX_NAME not in pc.list_indexes().names():
-        pc.create_index(
+    if INDEX_NAME not in pc_client.list_indexes().names():
+        pc_client.create_index(
             name=INDEX_NAME,
             dimension=DIMENSION,
             metric="cosine",  # Cosine is recommended for OpenAI embeddings
             spec=ServerlessSpec(cloud="aws", region="us-east-1"),
         )
 
-    index = pc.Index(INDEX_NAME)
+    index = pc_client.Index(INDEX_NAME)
 
     # 2. Generate embeddings
     embeddings = embed(chunks)
@@ -87,7 +94,7 @@ def ask_llm(question, context):
     Question: {question}
     """
 
-    response = client.chat.completions.create(
+    response = openai_client.chat.completions.create(
         model="gpt-4o-mini", messages=[{"role": "user", "content": prompt}]
     )
 

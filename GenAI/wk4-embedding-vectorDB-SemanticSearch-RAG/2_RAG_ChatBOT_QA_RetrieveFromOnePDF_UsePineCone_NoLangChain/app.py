@@ -1,5 +1,4 @@
 import streamlit as st
-# Assuming your pinecone-updated script is named step_2_rag_core.py
 from step_2_rag_core import read_pdf, chunk_text, build_index, retrieve, ask_llm
 
 st.title("Simple PDF RAG Chatbot (Pinecone Edition)")
