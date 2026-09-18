@@ -2,6 +2,6 @@
 
 2)  git add . 
 
-3)  git commit -m "commit"  
+3)  git commit -m "Updated"  
 
 4) git push -u origin main  
